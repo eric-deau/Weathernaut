@@ -8,8 +8,8 @@ This browser based web application to ...
 List team members and/or short bio's here... 
 * Hi my name is Vishav! I am excited for this project 
 * Hi my name is Eric and I am not that tall
-* Hi, my name is Derek and I don't do well during extreme weather events.
-* ======
+* Hi, my name is Derek and I don't do well during extreme weather events like heat waves.
+* 
 * 
 	
 ## 3. Technologies and Resources Used
