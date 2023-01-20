@@ -7,7 +7,7 @@ This browser based web application to ...
 ## 2. Names of Contributors
 List team members and/or short bio's here... 
 * Hi my name is Vishav! I am excited for this project 
-* Hi my name is Eric and I am not tall.
+* Hi my name is Eric and I am not that tall
 * Hi, my name is Derek and I don't do well during extreme weather events.
 * ======
 * 
