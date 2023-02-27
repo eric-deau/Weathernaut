@@ -33,14 +33,30 @@
 
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="./styles/style.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+      integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+      crossorigin=""
+    />
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+      integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+      crossorigin=""
+    ></script>
   </head>
 
   <body>
-    <!-- <nav id="navbarPlaceholder"></nav> -->
-    <main></main>
+    <nav id="navbarPlaceholder"></nav>
+    <main>
+      <div id="map"></div>
+    </main>
     <footer id="footerPlaceholder"></footer>
 
     <!-- Extra scripts -->
     <script src="./scripts/constants.js"></script>
+    <script src="./scripts/map.js"></script>
   </body>
 </html>

@@ -25,3 +25,7 @@
 .nav {
     background-color: #272643;
 }
+
+#map {
+    height: 100vh;
+}
