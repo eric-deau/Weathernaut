@@ -1,4 +1,15 @@
-function sayHello() {
+// function sayHello() {
     
+// }
+// //sayHello();
+
+
+function goToLogin() {
+    location.href = 'login.html'
 }
-//sayHello();
+
+function setup() {
+    console.log("Setup")
+}
+
+setup();
