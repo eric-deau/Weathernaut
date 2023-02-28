@@ -1,4 +1,4 @@
-var map = L.map('map').setView([49.203, -122.934], 11);
+var map = L.map('map-embed').setView([49.203, -122.934], 11);
 var marker;
 var popup = L.popup();
 var numOfMarkers = 0;
