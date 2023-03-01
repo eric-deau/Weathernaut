@@ -16,13 +16,13 @@ function onMapClick(e) {
     coordinates = (e.latlng);
     popup.setLatLng(coordinates);
     popup.openOn(map);
-    if (numOfMarkers == 0){
+    if (numOfMarkers == 0) {
         marker = L.marker(coordinates).addTo(map);
         popup.setContent("You clicked the map at " + coordinates.toString());
-        numOfMarkers ++;
-    }else {
+        numOfMarkers++;
+    } else {
         marker.removeFrom(map);
-        numOfMarkers --;
+        numOfMarkers--;
     }
     // marker = L.marker(coordinates).addTo(map);
 }
