@@ -1,5 +1,5 @@
 // function sayHello() {
-    
+
 // }
 // //sayHello();
 
@@ -10,6 +10,15 @@ function goToLogin() {
 
 function setup() {
     console.log("Setup")
+}
+
+function logout() {
+    firebase.auth().signOut().then(() => {
+        // Sign-out successful.
+        console.log("logging out user");
+    }).catch((error) => {
+        // An error happened.
+    });
 }
 
 setup();
