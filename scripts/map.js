@@ -46,6 +46,16 @@ function createMap(longitude, latitude, zoom) {
     // marker = L.marker(coordinates).addTo(map);
   }
 
+  // Update URL on drag
+  function updateURL(g) {
+    var center = g.target.getCenter();
+    var zoom = g.target.getZoom();
+    var newURL =
+      "map.html?long=" + center.lat + "&lat=" + center.lng + "&zoom=" + zoom;
+    window.history.pushState({ path: newURL }, "", newURL);
+  }
+
+  map.on("moveend", updateURL);
   map.on("click", onMapClick);
 }
 
