@@ -86,3 +86,12 @@
     font-style: italic;
     margin-top: 10em;
 }
+
+
+
+/* Trip Planner Results */
+#result-summary {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 20px;
+}
