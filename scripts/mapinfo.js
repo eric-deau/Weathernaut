@@ -1,7 +1,9 @@
 function createMap(longitude, latitude, zoom) {
-  longitude ? (longitude = longitude) : (longitude = 49.203);
-  latitude ? (latitude = latitude) : (latitude = -122.934);
+  longitude ? (longitude = longitude) : (longitude = coordinates[0]);
+  latitude ? (latitude = latitude) : (latitude = coordinates[1]);
   zoom ? (zoom = zoom) : (zoom = 11);
+
+  console.log(coordinates);
 
   var map = L.map("map-embed").setView([longitude, latitude], zoom);
   var marker;
@@ -23,8 +25,8 @@ function createMap(longitude, latitude, zoom) {
     if (markerOnMap == false) {
       marker = L.marker(coordinates, { alt: "Info" })
         .addTo(map)
-        .bindPopup(coordinates.toString() + '\n<a href="./mapinfo.html">Click for more info!</a>');
-      // popup.setContent("You clicked the map at " + coordinates.toString());
+        .bindPopup("test");
+      popup.setContent("You clicked the map at " + coordinates.toString());
       markerOnMap = true;
     } else {
       marker.removeFrom(map);

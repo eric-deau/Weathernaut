@@ -25,6 +25,10 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+        integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
 
     <!-- Google Icons (Material Design)-->
     <link rel="stylesheet"
@@ -36,11 +40,30 @@
 
 <body>
     <nav id="navbarPlaceholder"></nav>
-    <main></main>
+    <main>
+        <div id="map-embed" style="height: 275px" class="mb-4"></div>
+        <div class="card text-center">
+            <div class="card-header">
+                <h1>Quick Info</h1>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <button onclick="goToTripPlanner()" class="btn btn-primary">Plan A Trip</button>
+            </div>
+        </div>
+    </main>
     <footer id="footerPlaceholder"></footer>
 
     <!-- Extra scripts -->
     <script src="./scripts/constants.js"></script>
+    <script src="./scripts/script.js"></script>
+    <script src="./scripts/map.js"></script>
+    <script src="./scripts/mapinfo.js"></script>
 </body>
 
 </html>

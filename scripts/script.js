@@ -8,6 +8,10 @@ function goToLogin() {
     location.href = 'login.html'
 }
 
+function goToTripPlanner() {
+    location.href = 'trip-planner.html'
+}
+
 function setup() {
     console.log("Setup")
 }
