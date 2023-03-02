@@ -33,47 +33,116 @@
 
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="./styles/style.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+      integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+      crossorigin=""
+    />
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+      integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+      crossorigin=""
+    ></script>
   </head>
 
   <body>
     <nav id="navbarPlaceholder"></nav>
     <main>
-      <div id="trip-planner-main">
-        <form id="trip-planner-information">
-          <div id="search" class="mb-4">
-              <input
-                id="search-location"
-                class="ps-4 pe-4 pt-2 pb-2"
-                placeholder="Search Destination"
-              />
-          </div>
-          <div id="transport-mode" class="text-start ps-4 pe-4 pt-3 pb-3 w-100 m-auto mt-3 mb-4">
-            <h3>Transportation Mode</h3>
-            <input type="radio" id="walk" name="transport-mode" value="walk" />
-            <label for="walk">Walk</label>
-            <input type="radio" id="bike" name="transport-mode" value="bike" />
-            <label for="bike">Bike</label>
-            <input type="radio" id="car" name="transport-mode" value="car" />
-            <label for="car">Car</label>
-            <input
-              type="radio"
-              id="transit"
-              name="transport-mode"
-              value="transit"
-            />
-            <label for="transit">Transit</label>
-          </div>
-          <div id="submit-button">
-            <button type="submit" id="trip-planner-submit" class="mb-2 w-100 pt-2 pb-2 ps-3 ps-4">See Travel Information</button>
-        </form>
+      <div id="result-summary" class="pt-2 pb-3">
+        <span id="destination">Destination</span
+        ><span>
+          <span id="travel-modes">mode1 | mode2</span
+          ><span id="distance">X</span>km
+          
+        </span>
       </div>
-      <div id="content">
-        <p>Enter a destination...</p>
+      <div id="map-embed" style="height: 275px" class="mb-4"></div>
+      <div class="container text-center mt-2">
+        <div class="row justify-content-center">
+          <div class="col-auto">
+            <div class="card text-bg-primary mb-3" style="max-width: 100%">
+              <div class="card-header">
+                <!--<img src="../1800_202310_DTC12/images/notifications_FILL1_wght400_GRAD0_opsz48.svg" alt="notification bell"> -->
+                <h1>
+                  <span class="material-symbols-outlined"> notifications </span
+                  >Alert 1
+                </h1>
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
+                  libero deserunt quo delectus esse perspiciatis provident
+                  eligendi impedit adipisci maxime, ex vero quis rerum quod a
+                  nostrum dignissimos et dolore dolor accusamus quos asperiores
+                  omnis culpa exercitationem. Exercitationem voluptate ut
+                  aspernatur eveniet fugit libero id sint esse ipsa perferendis.
+                  Nesciunt!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container text-center mt-2">
+        <div class="row justify-content-center">
+          <div class="col-auto">
+            <div class="card text-bg-primary mb-3" style="max-width: 100%">
+              <div class="card-header">
+                <!--<img src="../1800_202310_DTC12/images/notifications_FILL1_wght400_GRAD0_opsz48.svg" alt="notification bell"> -->
+                <h1>
+                  <span class="material-symbols-outlined"> thumb_up </span
+                  >Recommendations
+                </h1>
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
+                  libero deserunt quo delectus esse perspiciatis provident
+                  eligendi impedit adipisci maxime, ex vero quis rerum quod a
+                  nostrum dignissimos et dolore dolor accusamus quos asperiores
+                  omnis culpa exercitationem. Exercitationem voluptate ut
+                  aspernatur eveniet fugit libero id sint esse ipsa perferendis.
+                  Nesciunt!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container text-center mt-2">
+        <div class="row justify-content-center">
+          <div class="col-auto">
+            <div class="card text-bg-primary mb-3" style="max-width: 100%">
+              <div class="card-header">
+                <!--<img src="../1800_202310_DTC12/images/notifications_FILL1_wght400_GRAD0_opsz48.svg" alt="notification bell"> -->
+                <h1>
+                  <span class="material-symbols-outlined"> menu_book </span>Tips
+                  & Guides
+                </h1>
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
+                  libero deserunt quo delectus esse perspiciatis provident
+                  eligendi impedit adipisci maxime, ex vero quis rerum quod a
+                  nostrum dignissimos et dolore dolor accusamus quos asperiores
+                  omnis culpa exercitationem. Exercitationem voluptate ut
+                  aspernatur eveniet fugit libero id sint esse ipsa perferendis.
+                  Nesciunt!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
     <footer id="footerPlaceholder"></footer>
 
     <!-- Extra scripts -->
     <script src="./scripts/constants.js"></script>
+    <script src="./scripts/map.js"></script>
   </body>
 </html>
