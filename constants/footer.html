@@ -1,27 +1,51 @@
 <!-- main nav footer skeleton -->
 
+<script src="./scripts/script.js"></script>
+
 <ul class="nav justify-content-center fixed-bottom nav-fill">
   <li class="nav-item" id="main">
-    <a class="nav-link active" aria-current="page" href="../main.html"
-      ><span class="text-white material-symbols-outlined"> home </span></a
+    <span
+      class="nav-link active"
+      aria-current="page"
+      href="../main.html"
+      onclick="goToPage(this)"
+      value="main"
+      role="button"
+      ><span class="text-white material-symbols-outlined"> home </span
+      ><div class="item-label">Home</span></span
     >
   </li>
   <li class="nav-item" id="favourites">
-    <a class="nav-link" href="#"
-      ><span class="text-white material-symbols-outlined"> favorite </span></a
+    <span
+      class="nav-link"
+      href="#"
+      onclick="goToPage(this)"
+      value="favourites"
+      role="button"
+      ><span class="text-white material-symbols-outlined"> favorite </span
+      ><div class="item-label">Favourites</div></span
     >
   </li>
   <li class="nav-item" id="alerts">
-    <a class="nav-link" href="#"
+    <span
+      class="nav-link"
+      href="#"
+      onclick="goToPage(this)"
+      value="alerts"
+      role="button"
       ><span class="text-white material-symbols-outlined">
-        notifications_active
-      </span></a
+        notifications_active </span
+      ><div class="item-label">Alerts</div></span
     >
   </li>
   <li class="nav-item" id="profile">
-    <a class="nav-link"
-      ><span class="text-white material-symbols-outlined"> person </span></a
-    >
+    <span
+      class="nav-link"
+      onclick="goToPage(this)"
+      value="profile"
+      role="button"
+      ><span class="text-white material-symbols-outlined"> person </span
+      ><div class="item-label">Profile</div></span>
   </li>
 </ul>
 
