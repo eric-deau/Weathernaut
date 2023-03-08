@@ -95,3 +95,45 @@
     justify-content: space-between;
     margin: 0 20px;
 }
+
+
+/* Recommendations.html  */
+ 
+.card-center {
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  
+  @media only screen and (min-width: 768px) {
+    .card-center {
+      margin-top: 100px;
+      margin-bottom: 100px;
+    }
+  }
+  
+  .card-body {
+    text-align: center;
+  }
+  
+  .card-title {
+    margin-bottom: 20px;
+  }
+  
+  .card {
+    height: 100%;
+  }
+  
+  .btn {
+    width: 100%;
+  }
+  
+  .row {
+    margin-top: 30px;
+  }
+  
+  @media only screen and (min-width: 768px) {
+    .row {
+      margin-top: 50px;
+    }
+  }
+  
