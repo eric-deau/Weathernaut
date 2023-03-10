@@ -7,8 +7,10 @@ function createMap(latitude, longitude, zoom) {
     var map = L.map("map-embed").setView([latitude, longitude], zoom);
     var marker;
     var markerOnMap = false;
-    var lat;
-    var lng;
+    var lat = latitude;
+    var lng = longitude;
+
+    getLocation(lat, lng);
 
     // Geocoding API
 
@@ -250,18 +252,34 @@ function createMap(latitude, longitude, zoom) {
         coordinates = e.latlng;
         lat = e.latlng.lat;
         lng = e.latlng.lng;
+        getLocation(lat, lng);
 
-        // Reverse Geocoding
+        // // Reverse Geocoding
+        // $.ajax({
+        //     url: `https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${lng}&format=json&apiKey=b8982cbd275848cea36a58777f3cfcfa`,
+        //     type: "GET",
+        //     success: function (res) {
+        //         console.log(res);
+        //         var addressInfo = res.results[0].address_line1 + " " + res.results[0].address_line2;
+        //         placeMarker(addressInfo, res.results[0].lat, res.results[0].lon);
+        //     }
+        // });
+    }
+    // Reverse Geocoding
+    function getLocation(lattitude, longitude) {
+        console.log(lattitude, longitude);
         $.ajax({
-            url: `https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${lng}&format=json&apiKey=b8982cbd275848cea36a58777f3cfcfa`,
+            url: `https://api.geoapify.com/v1/geocode/reverse?lat=${lattitude}&lon=${longitude}&format=json&apiKey=b8982cbd275848cea36a58777f3cfcfa`,
             type: "GET",
             success: function (res) {
-                console.log(res);
+                console.log("response", res);
+                // console.log("get location", res.results[0].lat, res.results[0].lon);
                 var addressInfo = res.results[0].address_line1 + " " + res.results[0].address_line2;
-                placeMarker(addressInfo, res.results[0].lat, res.results[0].lon);
+                placeMarker(addressInfo, latitude, longitude);
             }
         });
     }
+
     function placeMarker(locationInfo, lat, lng) {
         if (markerOnMap == false) {
             marker = L.marker([lat, lng], { alt: "Info" })
@@ -279,8 +297,10 @@ function createMap(latitude, longitude, zoom) {
     }
     // Update URL on drag
     function updateURL(g) {
+        console.log(g);
         var center = g.target.getCenter();
         var zoom = g.target.getZoom();
+        console.log(center.lat, center.lng);
         var newURL =
             "map.html?lat=" + center.lat + "&long=" + center.lng + "&zoom=" + zoom;
         window.history.pushState({ path: newURL }, "", newURL);
@@ -314,6 +334,8 @@ function updateWeather() {
 }
 
 function getCurrentWeather(latitude, longitude) {
+    console.log("weather lat", latitude);
+    console.log("weather long", longitude);
     var twoHoursAgo = new Date();
     twoHoursAgo.setHours(twoHoursAgo.getHours() - 2);
 
