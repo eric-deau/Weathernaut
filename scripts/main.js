@@ -25,8 +25,10 @@ function insertNameFromFirestore() {
       currentUser.get().then((userDoc) => {
         //get the user name
         var userName = userDoc.data().name;
+        var userCity = userDoc.data().city;
         console.log(userName);
         $("#name-goes-here").text(userName); //jquery
+        $("#last-location").text(userCity);
       });
     }
   });
