@@ -45,6 +45,7 @@ main {
 
 #map-embed {
     height: 100%;
+    width: 100%;
     position: relative;
     z-index: 0;
 }
@@ -205,15 +206,15 @@ main {
     width: 100%;
 }
 
-.row {
+/* .row {
     margin-top: 30px;
-}
+} */
 
-@media only screen and (min-width: 768px) {
+/* @media only screen and (min-width: 768px) {
     .row {
         margin-top: 50px;
     }
-}
+} */
 
 .item-label {
     color: #ffffff;
