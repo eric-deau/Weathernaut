@@ -44,7 +44,7 @@ main {
 /* Map */
 
 #map-embed {
-    height: calc(100vh - 182px);
+    height: 100%;
     position: relative;
     z-index: 0;
 }
