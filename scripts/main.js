@@ -3,11 +3,11 @@ function getTimeOfDay() {
   var hourNow = today.getHours();
   var greeting;
 
-  if (hourNow > 18) {
+  if (hourNow > 18 || hourNow < 4) {
     greeting = "Good evening";
   } else if (hourNow > 12) {
     greeting = "Good afternoon";
-  } else if (hourNow > 0) {
+  } else if (hourNow >= 4) {
     greeting = "Good morning";
   } else {
     greeting = "Welcome";
@@ -34,5 +34,53 @@ function insertNameFromFirestore() {
   });
 }
 
+function getTipoftheDay() {
+  date = new Date().toLocaleDateString();
+  date = date.split("/").join("");
+  console.log(date);
+
+  tipCollection = db.collection("tipOfTheDay");
+
+  var tips = [];
+  var selectedTip;
+
+  tipCollection
+    .where("lastShown", "==", String(date))
+    .get()
+    .then((doc) => {
+      if (doc.size > 0) {
+        doc.forEach((res) => {
+          tips.push(res.data());
+          selectedTip = tips[0].tip;
+          console.log("today's tip: " + selectedTip);
+
+          $("#tip-of-the-day").text(selectedTip);
+        });
+      } else {
+        tipCollection.get().then((doc) => {
+          var tipIDs = [];
+
+          doc.forEach((res) => {
+            tips.push(res.data().tip);
+            tipIDs.push(res.id);
+          });
+
+          console.log(tipIDs);
+
+          randomIndex = Math.floor(Math.random() * tips.length);
+          selectedTip = tips[randomIndex];
+          console.log("random tip: " + selectedTip);
+
+          tipCollection.doc(tipIDs[randomIndex]).update({
+            lastShown: date,
+          });
+
+          $("#tip-of-the-day").text(selectedTip);
+        });
+      }
+    });
+}
+
+getTipoftheDay();
 getTimeOfDay();
 insertNameFromFirestore();
