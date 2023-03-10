@@ -38,6 +38,7 @@
 main {
     margin-top: 80px;
     margin-bottom: 56px;
+    height: calc(100vh - 137px);
 }
 
 /* Map */
