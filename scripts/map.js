@@ -232,9 +232,10 @@ function createMap(latitude, longitude, zoom) {
     console.log(data);
     var lat = data.lat;
     var lng = data.lon;
-    var streetInfo = data.street;
+    var addressInfo = data.address_line1 + " " + data.address_line2;
+    markerOnMap = false;
     map.panTo([lat, lng], 18);
-    placeMarker(streetInfo, lat, lng);
+    placeMarker(addressInfo, lat, lng);
   }, {
     placeholder: "Enter an address here"
   });
@@ -259,11 +260,10 @@ function createMap(latitude, longitude, zoom) {
       type: "GET",
       success: function (res) {
         console.log(res);
-        streetInfo = res.results[0].street;
-        placeMarker(streetInfo, res.results[0].lat, res.results[0].lon);
+        var addressInfo = res.results[0].address_line1 + " " + res.results[0].address_line2;
+        placeMarker(addressInfo, res.results[0].lat, res.results[0].lon);
       }
     });
-    console.log("streetInfo after", streetInfo);
   }
   function placeMarker(locationInfo, lat, lng) {
     if (markerOnMap == false) {
@@ -271,7 +271,7 @@ function createMap(latitude, longitude, zoom) {
         .addTo(map)
         .bindPopup(
           locationInfo +
-          `\n<a href='./mapinfo.html?lat=${lat}&lng=${lng}'>More Info</a>`
+          `\n<a href='./mapinfo.html?lat=${lat}&lng=${lng}&zoom=18'>More Info</a>`
         )
         .openPopup();
       markerOnMap = true;
