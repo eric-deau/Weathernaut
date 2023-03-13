@@ -13,12 +13,11 @@ function getCity() {
           success: function (res) {
             console.log(res);
             getCurrentWeather(res.results[0].lat, res.results[0].lon);
-          }
+          },
         });
       });
     }
   });
-
 }
 
 function getCurrentWeather(latitude, longitude) {
@@ -38,7 +37,7 @@ function getCurrentWeather(latitude, longitude) {
     "&appid=" +
     "4e91d8495e609600b11d07a29c00fcb4";
 
-  console.log(url)
+  console.log(url);
 
   getWeatherData()
     .then((data) => {
@@ -48,7 +47,9 @@ function getCurrentWeather(latitude, longitude) {
       weatherLastChecked = Date.now();
       weatherLastLocation = data.name;
       weatherFeelsLike = Math.round(parseFloat(data.main.feels_like) - 273.15);
+      weatherIcon = data.weather[0].icon;
 
+      console.log(weatherIcon);
       console.log("Got weather");
 
       $("#temperature").text(forecastTemp);
@@ -56,6 +57,9 @@ function getCurrentWeather(latitude, longitude) {
       $("#weather-desc").text(forecastWeatherDesc);
       $("#last-location").text(weatherLastLocation);
       $("#feels-like").text(weatherFeelsLike);
+      $("#weather-icon").html(
+        `<img src="https://openweathermap.org/img/wn/${weatherIcon}@2x.png" alt="weather icon" width="64" height="64">`
+      );
     })
     .catch(function () {
       // alert("Error updating weather data. Please try refreshing this page.");
