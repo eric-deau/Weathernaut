@@ -136,7 +136,7 @@ main {
     padding: 20px;
 }
 
-#search-location {
+#trip-planner-main #autocomplete-container input {
     border-radius: 50px;
     border: #a4a4a4 1px solid;
     width: 100%;
@@ -163,7 +163,8 @@ main {
 
 #content p {
     font-style: italic;
-    margin-top: 10em;
+    margin-top: 3em;
+    text-align: center;
 }
 
 
