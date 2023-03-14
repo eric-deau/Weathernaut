@@ -1,3 +1,18 @@
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+
+locationName = urlParams.get("locationName");
+long = urlParams.get("lng");
+lat = urlParams.get("lat");
+
+if (long) {
+  $("#longitude").val(long);
+}
+
+if (lat) {
+  $("#latitude").val(lat);
+}
+
 // Geocoding API
 
 function addressAutocomplete(containerElement, callback, options) {
@@ -267,3 +282,7 @@ function handleTripPlanner() {
 $(document).ready(function () {
   handleTripPlanner();
 });
+
+if (locationName) {
+  $(".input-container input").val(locationName);
+}
