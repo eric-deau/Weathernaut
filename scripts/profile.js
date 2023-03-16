@@ -68,5 +68,19 @@ function saveUserInfo() {
     document.getElementById('personalInfoFields').disabled = true;
 }
 
+function logout() {
+    firebase
+        .auth()
+        .signOut()
+        .then(() => {
+            // Sign-out successful.
+            console.log("logging out user");
+            location.href = "./index.html";
+        })
+        .catch((error) => {
+            // An error happened.
+        });
+}
+
 //call the function to run it 
 populateUserInfo();

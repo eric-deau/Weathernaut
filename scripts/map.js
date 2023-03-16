@@ -297,8 +297,10 @@ function createMap(latitude, longitude, zoom) {
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 
-long = urlParams.get("long");
+lng = urlParams.get("long");
 lat = urlParams.get("lat");
 zoom = urlParams.get("zoom");
 
-createMap(lat, long, zoom);
+console.log("global scope: " + "Lat: " + lat + " Lng: " + lng);
+
+createMap(lat, lng, zoom);

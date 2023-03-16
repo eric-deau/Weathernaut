@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "node-env-run": "^4.0.2",
+    "nodemon": "^2.0.21",
+    "require": "^0.4.4"
+  },
+  "name": "1800_202310_dtc12",
+  "description": "State your app in a nutshell, or one-sentence pitch. Give some elaboration on what the core features are.  \r This browser based web application to ...",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
