@@ -60,7 +60,7 @@ function createMap(latitude, longitude, zoom) {
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 
-long = urlParams.get("long");
+long = urlParams.get("lng");
 lat = urlParams.get("lat");
 zoom = urlParams.get("zoom");
 
