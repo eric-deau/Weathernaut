@@ -1,4 +1,4 @@
-
+console.log(API_KEY);
 
 function createMap(latitude, longitude, zoom) {
     latitude ? (latitude = latitude) : (latitude = 49.203);
@@ -95,11 +95,10 @@ function createMap(latitude, longitude, zoom) {
 
                     // The API Key provided is restricted to JSFiddle website
                     // Get your own API Key on https://myprojects.geoapify.com
-                    const apiKey = "b8982cbd275848cea36a58777f3cfcfa";
 
                     var url = `https://api.geoapify.com/v1/geocode/autocomplete?text=${encodeURIComponent(
                         currentValue
-                    )}&format=json&limit=5&apiKey=${apiKey}`;
+                    )}&format=json&limit=5&apiKey=${API_KEY}`;
 
                     fetch(url).then((response) => {
                         currentPromiseReject = null;
@@ -255,7 +254,6 @@ function createMap(latitude, longitude, zoom) {
     }
 
     addressAutocomplete(document.getElementById("autocomplete-container"), (data) => {
-        console.log("Selected option: ");
         var addressInfo = data.address_line1 + " " + data.address_line2;
         if (markerOnMap == true) {
             map.removeLayer(marker);
@@ -282,7 +280,6 @@ function createMap(latitude, longitude, zoom) {
 
     // Event Clicker for Map
     function onMapClick(e) {
-        //console.log(e.latlng);
         coordinates = e.latlng;
         lat = e.latlng.lat;
         lng = e.latlng.lng;
@@ -290,14 +287,10 @@ function createMap(latitude, longitude, zoom) {
     }
     // Reverse Geocoding
     function getLocation(latitude, longitude) {
-        console.log(latitude, longitude);
         $.ajax({
-            url: `https://api.geoapify.com/v1/geocode/reverse?lat=${latitude}&lon=${longitude}&format=json&apiKey=b8982cbd275848cea36a58777f3cfcfa`,
+            url: `https://api.geoapify.com/v1/geocode/reverse?lat=${latitude}&lon=${longitude}&format=json&apiKey=${API_KEY}`,
             type: "GET",
             success: function (res) {
-                console.log("response", res);
-                console.log("getLocation: " + "Lat: " + latitude + " Lng: " + longitude);
-
                 var addressInfo =
                     res.results[0].address_line1 + " " + res.results[0].address_line2;
                 placeMarker(addressInfo, latitude, longitude);
@@ -306,7 +299,6 @@ function createMap(latitude, longitude, zoom) {
     }
 
     function placeMarker(locationInfo, lat, lng) {
-        console.log("placeMarker: " + "Lat: " + latitude + " Lng: " + longitude);
         if (markerOnMap == false) {
             marker = L.marker([lat, lng], { alt: "Info" })
                 .addTo(map)
@@ -315,8 +307,6 @@ function createMap(latitude, longitude, zoom) {
                     `\n<a href='./mapinfo.html?lat=${lat}&lng=${lng}&zoom=18'>Click Here For More Info</a>`
                 )
                 .openPopup();
-
-            console.log(locationInfo);
 
             $("#trip-planner-link").attr(
                 "href",
@@ -356,14 +346,9 @@ var lng = urlParams.get("lng");
 var lat = urlParams.get("lat");
 var zoom = urlParams.get("zoom");
 
-const geoKey = "b8982cbd275848cea36a58777f3cfcfa";
-
 function updateWeather() {
-    var lat = urlParams.get("lat");
-    var lng = urlParams.get("lng");
-    console.log("updateWeather: " + "Lat: " + lat + " Lng: " + lng);
     $.ajax({
-        url: `https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${lng}&format=json&apiKey=${geoKey} `,
+        url: `https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${lng}&format=json&apiKey=${API_KEY} `,
         type: "GET",
         success: function (res) {
             getCurrentWeather(res.results[0].lat, res.results[0].lon);
@@ -372,8 +357,6 @@ function updateWeather() {
 }
 
 function getCurrentWeather(latitude, longitude) {
-    console.log("weather lat", latitude);
-    console.log("weather long", longitude);
     var twoHoursAgo = new Date();
     twoHoursAgo.setHours(twoHoursAgo.getHours() - 2);
 
@@ -390,8 +373,6 @@ function getCurrentWeather(latitude, longitude) {
         "&appid=" +
         "4e91d8495e609600b11d07a29c00fcb4";
 
-    console.log(url);
-
     getWeatherData()
         .then((data) => {
             forecastTemp = Math.round(parseFloat(data.main.temp) - 273.15);
@@ -400,8 +381,6 @@ function getCurrentWeather(latitude, longitude) {
             weatherLastChecked = Date.now();
             weatherLastLocation = data.name;
             weatherFeelsLike = Math.round(parseFloat(data.main.feels_like) - 273.15);
-
-            console.log("Got weather");
 
             $("#temperature").text(forecastTemp);
             $("#weather-type").text(forecastWeather);

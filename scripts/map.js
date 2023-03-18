@@ -261,7 +261,7 @@ function createMap(latitude, longitude, zoom) {
 
     // Reverse Geocoding
     $.ajax({
-      url: `https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${lng}&format=json&apiKey=b8982cbd275848cea36a58777f3cfcfa`,
+      url: `https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${lng}&format=json&apiKey=${API_KEY}`,
       type: "GET",
       success: function (res) {
         console.log(res);
@@ -305,7 +305,5 @@ const urlParams = new URLSearchParams(queryString);
 var lng = urlParams.get("long");
 var lat = urlParams.get("lat");
 var zoom = urlParams.get("zoom");
-
-console.log("global scope: " + "Lat: " + lat + " Lng: " + lng);
 
 createMap(lat, lng, zoom);

@@ -1,97 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>DTC-12 COMP 1800 Project</title>
-    <meta name="dtc-12 comp 1800" content="My 1800 App" />
 
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<head>
+  <title>DTC-12 COMP 1800 Project</title>
+  <meta name="dtc-12 comp 1800" content="My 1800 App" />
 
-    <!-- Bootstrap Library CSS CDN go here -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-      crossorigin="anonymous"
-    />
-    <!-- Boostrap Library JS CDN  go here -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-      crossorigin="anonymous"
-    ></script>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- Other libraries go here -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
-    <link
-      type="text/css"
-      rel="stylesheet"
-      href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css"
-    />
-    <script
-      src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
-      integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
-      crossorigin=""
-    ></script>
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
-      integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
-      crossorigin=""
-    />
+  <!-- Bootstrap Library CSS CDN go here -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+  <!-- Boostrap Library JS CDN  go here -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
 
-    <!-- Google Icons (Material Design)-->
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
-    />
+  <!-- Other libraries go here -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+    integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+    integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
 
-    <!-- Link to styles of your own -->
-    <link rel="stylesheet" href="./styles/style.css" />
-  </head>
+  <!-- Google Icons (Material Design)-->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 
-  <body>
-    <nav id="navbarPlaceholder"></nav>
-    <main>
-      <div class="autocomplete-container" id="autocomplete-container"></div>
-      <div style="height: 275px">
-        <div id="map-embed" class="mb-4"></div>
+  <!-- Link to styles of your own -->
+  <link rel="stylesheet" href="./styles/style.css" />
+</head>
+
+<body>
+  <nav id="navbarPlaceholder"></nav>
+  <main>
+    <div class="autocomplete-container" id="autocomplete-container"></div>
+    <div style="height: 275px">
+      <div id="map-embed" class="mb-4"></div>
+    </div>
+    <div class="card text-center">
+      <div class="card-header">
+        <h1>Quick Info</h1>
       </div>
-      <div class="card text-center">
-        <div class="card-header">
-          <h1>Quick Info</h1>
-        </div>
-        <div class="card-body">
-          <h5>Temperature</h5>
-          <p><span id="temperature">...</span>°C</p>
-          <h5>Current Weather</h5>
-          <p><span id="weather-type">...</span></p>
-          <h5>City</h5>
-          <p><span id="last-location">...</span></p>
-          <a id="trip-planner-link" href="./trip-planner.html"
-            ><button
-              value="trip-planner"
-              sonclick="goToPage(this)"
-              class="btn btn-primary"
-            >
-              Plan A Trip
-            </button></a
-          >
-        </div>
+      <div class="card-body">
+        <h5>Temperature</h5>
+        <p><span id="temperature">...</span>°C</p>
+        <h5>Current Weather</h5>
+        <p><span id="weather-type">...</span></p>
+        <h5>City</h5>
+        <p><span id="last-location">...</span></p>
+        <a id="trip-planner-link" href="./trip-planner.html"><button value="trip-planner" sonclick="goToPage(this)"
+            class="btn btn-primary">
+            Plan A Trip
+          </button></a>
       </div>
-    </main>
-    <footer id="footerPlaceholder"></footer>
+    </div>
+  </main>
+  <footer id="footerPlaceholder"></footer>
 
-    <!-- Extra scripts -->
-    <script src="./scripts/constants.js"></script>
-    <script src="./scripts/script.js"></script>
-    <script src="./scripts/firebaseConfig.js"></script>
-    <script src="./scripts/mapinfo.js"></script>
-  </body>
+  <!-- Extra scripts -->
+  <script src="./scripts/constants.js"></script>
+  <script src="./scripts/script.js"></script>
+  <script src="./scripts/firebaseConfig.js"></script>
+  <script src="./scripts/config.js"></script>
+  <script src="./scripts/mapinfo.js"></script>
+</body>
+
 </html>
