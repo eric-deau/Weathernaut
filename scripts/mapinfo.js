@@ -1,5 +1,3 @@
-console.log(API_KEY);
-
 function createMap(latitude, longitude, zoom) {
     latitude ? (latitude = latitude) : (latitude = 49.203);
     longitude ? (longitude = longitude) : (longitude = -122.934);

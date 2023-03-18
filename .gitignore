@@ -4,4 +4,4 @@ node_modules/
 .vscode/
 weather.js
 firebaseConfig.js
-config.js
+/scripts/config.js
