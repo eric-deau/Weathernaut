@@ -24,6 +24,17 @@
 
     <!-- Other libraries go here -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css"
+    />
 
     <!-- Google Icons (Material Design)-->
     <link
@@ -58,32 +69,7 @@
         </span>
       </div>
       <div id="map-embed" style="height: 275px" class="mb-4"></div>
-      <div class="container text-center mt-2">
-        <div class="row justify-content-center">
-          <div class="col-auto">
-            <div class="card text-bg-primary mb-3" style="max-width: 100%">
-              <div class="card-header">
-                <!--<img src="../1800_202310_DTC12/images/notifications_FILL1_wght400_GRAD0_opsz48.svg" alt="notification bell"> -->
-                <h1>
-                  <span class="material-symbols-outlined"> notifications </span
-                  >Alert 1
-                </h1>
-              </div>
-              <div class="card-body">
-                <p class="card-text">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
-                  libero deserunt quo delectus esse perspiciatis provident
-                  eligendi impedit adipisci maxime, ex vero quis rerum quod a
-                  nostrum dignissimos et dolore dolor accusamus quos asperiores
-                  omnis culpa exercitationem. Exercitationem voluptate ut
-                  aspernatur eveniet fugit libero id sint esse ipsa perferendis.
-                  Nesciunt!
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <span id="transit-alert-placeholder"></span>
       <div class="container text-center mt-2">
         <div class="row justify-content-center">
           <div class="col-auto">
@@ -141,6 +127,7 @@
 
     <!-- Extra scripts -->
     <script src="./scripts/constants.js"></script>
+    <script src="./scripts/firebaseConfig.js"></script>
     <script src="./scripts/trip-planner-results.js"></script>
   </body>
 </html>
