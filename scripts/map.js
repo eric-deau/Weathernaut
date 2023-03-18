@@ -229,13 +229,20 @@ function createMap(latitude, longitude, zoom) {
 
   addressAutocomplete(document.getElementById("autocomplete-container"), (data) => {
     console.log("Selected option: ");
-    console.log(data);
-    var lat = data.lat;
-    var lng = data.lon;
     var addressInfo = data.address_line1 + " " + data.address_line2;
-    markerOnMap = false;
-    map.panTo([lat, lng], 18);
-    placeMarker(addressInfo, lat, lng);
+    if (markerOnMap == true) {
+      map.removeLayer(marker);
+      markerOnMap = false;
+      map.panTo([data.lat, data.lon]);
+      map.setZoom(18);
+      placeMarker(addressInfo, data.lat, data.lon);
+    }
+    else {
+      map.panTo([data.lat, data.lon]);
+      map.setZoom(18);
+      placeMarker(addressInfo, data.lat, data.lon);
+    };
+
   }, {
     placeholder: "Enter an address here"
   });
@@ -248,8 +255,6 @@ function createMap(latitude, longitude, zoom) {
 
   // Event Clicker for Map
   function onMapClick(e) {
-    //console.log(e.latlng);
-    var streetInfo;
     coordinates = e.latlng;
     lat = e.latlng.lat;
     lng = e.latlng.lng;
@@ -271,7 +276,7 @@ function createMap(latitude, longitude, zoom) {
         .addTo(map)
         .bindPopup(
           locationInfo +
-          `\n<a href='./mapinfo.html?lat=${lat}&lng=${lng}&zoom=18'>More Info</a>`
+          `\n<a href='./mapinfo.html?lat=${lat}&lng=${lng}&zoom=18'>Click Here For More Info</a>`
         )
         .openPopup();
       markerOnMap = true;
@@ -297,9 +302,9 @@ function createMap(latitude, longitude, zoom) {
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 
-lng = urlParams.get("long");
-lat = urlParams.get("lat");
-zoom = urlParams.get("zoom");
+var lng = urlParams.get("long");
+var lat = urlParams.get("lat");
+var zoom = urlParams.get("zoom");
 
 console.log("global scope: " + "Lat: " + lat + " Lng: " + lng);
 

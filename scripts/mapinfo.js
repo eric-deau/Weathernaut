@@ -254,23 +254,25 @@ function createMap(latitude, longitude, zoom) {
         });
     }
 
-    addressAutocomplete(
-        document.getElementById("autocomplete-container"),
-        (data) => {
-            console.log("Selected option: ");
-            console.log(data);
-            var lat = data.lat;
-            var lng = data.lon;
-            var addressInfo = data.address_line1 + " " + data.address_line2;
+    addressAutocomplete(document.getElementById("autocomplete-container"), (data) => {
+        console.log("Selected option: ");
+        var addressInfo = data.address_line1 + " " + data.address_line2;
+        if (markerOnMap == true) {
+            map.removeLayer(marker);
             markerOnMap = false;
-            map.panTo([lat, lng], 18);
-
-            placeMarker(addressInfo, lat, lng);
-        },
-        {
-            placeholder: "Enter an address here",
+            map.panTo([data.lat, data.lon]);
+            map.setZoom(18);
+            placeMarker(addressInfo, data.lat, data.lon);
         }
-    );
+        else {
+            map.panTo([data.lat, data.lon]);
+            map.setZoom(18);
+            placeMarker(addressInfo, data.lat, data.lon);
+        };
+
+    }, {
+        placeholder: "Enter an address here"
+    });
 
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
         maxZoom: 19,
@@ -310,7 +312,7 @@ function createMap(latitude, longitude, zoom) {
                 .addTo(map)
                 .bindPopup(
                     locationInfo +
-                    `\n<a href='./mapinfo.html?lat=${lat}&lng=${lng}&zoom=18'>More Info</a>`
+                    `\n<a href='./mapinfo.html?lat=${lat}&lng=${lng}&zoom=18'>Click Here For More Info</a>`
                 )
                 .openPopup();
 
