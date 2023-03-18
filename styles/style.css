@@ -229,6 +229,12 @@ input[type="radio"]:checked+label {
     border: solid 2px #2c698d;
 }
 
+.transpo-icon {
+    width: 72px;
+    height: 72px;
+    border: solid 2px #ffffff;
+}
+
 .transpo-icon-label {
     font-size: 75%;
 }
