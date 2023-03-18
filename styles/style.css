@@ -223,3 +223,12 @@ main {
     font-size: 70%;
     line-height: 1em;
 }
+
+input[type="radio"]:checked+label {
+    color: #2c698d;
+    border: solid 2px #2c698d;
+}
+
+.transpo-icon-label {
+    font-size: 75%;
+}
