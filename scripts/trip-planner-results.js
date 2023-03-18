@@ -1,7 +1,16 @@
-function createMap(latitude, longitude, zoom) {
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+
+long = urlParams.get("lng");
+lat = urlParams.get("lat");
+transportMode = urlParams.get("transport-mode");
+
+const geoKey = "b8982cbd275848cea36a58777f3cfcfa";
+
+function createMap(latitude, longitude) {
   latitude ? (latitude = latitude) : (latitude = 49.203);
   longitude ? (longitude = longitude) : (longitude = -122.934);
-  zoom ? (zoom = zoom) : (zoom = 11);
+  zoom = 11;
 
   // Assign map to div in html with ID "map-embed"
   var map = L.map("map-embed").setView([latitude, longitude], zoom);
@@ -42,6 +51,10 @@ function createMap(latitude, longitude, zoom) {
         $("#destination").text(addressInfo);
 
         placeMarker(latitude, longitude);
+
+        if (transportMode == "transit") {
+          getTransitAlerts(res.results[0].city);
+        }
       },
     });
   }
@@ -56,16 +69,6 @@ function createMap(latitude, longitude, zoom) {
     }
   }
 }
-
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-
-long = urlParams.get("lng");
-lat = urlParams.get("lat");
-zoom = urlParams.get("zoom");
-
-const geoKey = "b8982cbd275848cea36a58777f3cfcfa";
-
 function updateWeather() {
   var lat = urlParams.get("lat");
   var lng = urlParams.get("lng");
@@ -118,5 +121,38 @@ function getCurrentWeather(latitude, longitude) {
     });
 }
 
+function getTransitAlerts(city) {
+  db.collection("transitAlerts")
+    .where("locations", "array-contains", city)
+    .get()
+    .then((res) => {
+      res.forEach((alert) => {
+        console.log(alert.data());
+        $("#transit-alert-placeholder").append(`
+        <div class="container text-center mt-2">
+          <div class="row justify-content-center">
+            <div class="col-auto">
+              <div class="card text-bg-primary mb-3" style="max-width: 100%">
+                <div class="card-header">
+                  <!--<img src="../1800_202310_DTC12/images/notifications_FILL1_wght400_GRAD0_opsz48.svg" alt="notification bell"> -->
+                  <h1>
+                    <span class="material-symbols-outlined"> notifications </span>
+                    Transit Alert
+                  </h1>
+                </div>
+                <div class="card-body">
+                <h3>${alert.data().alertTitle}</h3>
+                  <p class="card-text">
+                    ${alert.data().alertDescription}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>`);
+      });
+    });
+}
+
 updateWeather();
-createMap(lat, long, zoom);
+createMap(lat, long);

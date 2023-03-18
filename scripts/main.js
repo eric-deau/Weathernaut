@@ -29,6 +29,8 @@ function insertNameFromFirestore() {
         console.log(userName);
         $("#name-goes-here").text(userName); //jquery
         $("#last-location").text(userCity);
+
+        getTransitAlerts(userCity);
       });
     }
   });
@@ -78,6 +80,23 @@ function getTipoftheDay() {
           $("#tip-of-the-day").text(selectedTip);
         });
       }
+    });
+}
+
+function getTransitAlerts(city) {
+  db.collection("transitAlerts")
+    .where("locations", "array-contains", city)
+    .get()
+    .then((res) => {
+      res.forEach((alert) => {
+        console.log(alert.data());
+        $("#alert-body").append(`                <h3>${
+          alert.data().alertTitle
+        }</h3>
+        <p class="card-text">
+          ${alert.data().alertDescription}
+        </p>`);
+      });
     });
 }
 
