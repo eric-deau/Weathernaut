@@ -233,6 +233,13 @@ input[type="radio"]:checked+label {
     width: 72px;
     height: 72px;
     border: solid 2px #ffffff;
+    border-radius: 5px;
+}
+
+.transpo-icon:hover {
+    background-color: #eaeaea;
+    border: solid 2px #eaeaea;
+    border-radius: 5px;
 }
 
 .transpo-icon-label {
