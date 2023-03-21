@@ -7,10 +7,9 @@ function createMap(latitude, longitude, zoom) {
 
   // Assign map to div in html with ID "map-embed"
   var map = L.map("map-embed").setView([latitude, longitude], zoom);
+  console.log("initialization", latitude, longitude)
   var marker;
   var markerOnMap = false;
-  var lat;
-  var lng;
 
   // Geocoding API
 
@@ -233,13 +232,15 @@ function createMap(latitude, longitude, zoom) {
     if (markerOnMap == true) {
       map.removeLayer(marker);
       markerOnMap = false;
-      map.panTo([lat, lng]);
       map.setZoom(18);
+      map.panTo([lat, lng]);
+      console.log("auto", lat, lng)
       placeMarker(addressInfo, data.lat, data.lon);
     }
     else {
-      map.panTo([lat, lng]);
       map.setZoom(18);
+      map.panTo([lat, lng]);
+      console.log("auto", lat, lng)
       placeMarker(addressInfo, data.lat, data.lon);
     };
 
@@ -266,7 +267,9 @@ function createMap(latitude, longitude, zoom) {
       success: function (res) {
         console.log(res);
         var addressInfo = res.results[0].address_line1 + " " + res.results[0].address_line2;
-        placeMarker(addressInfo, res.results[0].lat, res.results[0].lon);
+        lat = res.results[0].lat;
+        lng = res.results[0].lon;
+        placeMarker(addressInfo, lat, lng);
       }
     });
   }
@@ -276,7 +279,7 @@ function createMap(latitude, longitude, zoom) {
         .addTo(map)
         .bindPopup(
           locationInfo +
-          `\n<a href='./mapinfo.html?lat=${lat}&lng=${lng}&zoom=18'>Click Here For More Info</a>`
+          `\n<a href='./mapinfo.html?lat=${lat}&long=${lng}&zoom=18'>Click Here For More Info</a>`
         )
         .openPopup();
       markerOnMap = true;
@@ -302,7 +305,7 @@ function createMap(latitude, longitude, zoom) {
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 
-var lng = urlParams.get("long");
+var lng = urlParams.get("lng");
 var lat = urlParams.get("lat");
 var zoom = urlParams.get("zoom");
 
