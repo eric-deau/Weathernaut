@@ -1,7 +1,7 @@
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 
-locationName = urlParams.get("locationName");
+locationName = localStorage.getItem("locationInfo");
 long = urlParams.get("lng");
 lat = urlParams.get("lat");
 
