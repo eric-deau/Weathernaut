@@ -93,9 +93,7 @@ function createMap(latitude, longitude, zoom) {
 
           // The API Key provided is restricted to JSFiddle website
           // Get your own API Key on https://myprojects.geoapify.com
-          const apiKey = "b8982cbd275848cea36a58777f3cfcfa";
-
-          var url = `https://api.geoapify.com/v1/geocode/autocomplete?text=${encodeURIComponent(currentValue)}&format=json&limit=5&apiKey=${apiKey}`;
+          var url = `https://api.geoapify.com/v1/geocode/autocomplete?text=${encodeURIComponent(currentValue)}&format=json&limit=5&apiKey=${API_KEY}`;
 
           fetch(url)
             .then(response => {
@@ -230,15 +228,17 @@ function createMap(latitude, longitude, zoom) {
   addressAutocomplete(document.getElementById("autocomplete-container"), (data) => {
     console.log("Selected option: ");
     var addressInfo = data.address_line1 + " " + data.address_line2;
+    lat = data.lat;
+    lng = data.lon;
     if (markerOnMap == true) {
       map.removeLayer(marker);
       markerOnMap = false;
-      map.panTo([data.lat, data.lon]);
+      map.panTo([lat, lng]);
       map.setZoom(18);
       placeMarker(addressInfo, data.lat, data.lon);
     }
     else {
-      map.panTo([data.lat, data.lon]);
+      map.panTo([lat, lng]);
       map.setZoom(18);
       placeMarker(addressInfo, data.lat, data.lon);
     };
