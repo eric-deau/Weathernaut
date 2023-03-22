@@ -305,7 +305,7 @@ function createMap(latitude, longitude, zoom) {
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 
-var lng = urlParams.get("lng");
+var lng = urlParams.get("long");
 var lat = urlParams.get("lat");
 var zoom = urlParams.get("zoom");
 
