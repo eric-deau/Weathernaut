@@ -12,7 +12,7 @@ function getCity() {
           type: "GET",
           success: function (res) {
             console.log(res);
-            getCurrentWeather(res.results[0].lat, res.results[0].lon);
+            getCurrentWeather(userCity);
           },
         });
       });
@@ -20,7 +20,7 @@ function getCity() {
   });
 }
 
-function getCurrentWeather(latitude, longitude) {
+function getCurrentWeather(userCity) {
   var twoHoursAgo = new Date();
   twoHoursAgo.setHours(twoHoursAgo.getHours() - 2);
 
@@ -30,10 +30,8 @@ function getCurrentWeather(latitude, longitude) {
   }
 
   var url =
-    "https://api.openweathermap.org/data/2.5/weather?lat=" +
-    latitude +
-    "&lon=" +
-    longitude +
+    "https://api.openweathermap.org/data/2.5/weather?q=" +
+    userCity +
     "&appid=" +
     "4e91d8495e609600b11d07a29c00fcb4";
 
@@ -50,6 +48,7 @@ function getCurrentWeather(latitude, longitude) {
       weatherIcon = data.weather[0].icon;
 
       console.log(weatherIcon);
+      console.log(weatherLastLocation);
       console.log("Got weather");
 
       $("#temperature").text(forecastTemp);
