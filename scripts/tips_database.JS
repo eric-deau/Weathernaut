@@ -13,7 +13,7 @@ firebase.initializeApp(firebaseConfig);
 
 // Retrieve the recommendations from the Firestore database
 const db = firebase.firestore();
-const documentRef = db.collection('Tips and Tricks').doc('KqGEIXjE8yAkrYnnkmzm');
+const documentRef = db.collection('Tips and Tricks').doc('Rain tips');
 
 documentRef.get().then((doc) => {
   if (doc.exists) {
