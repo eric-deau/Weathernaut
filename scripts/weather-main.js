@@ -33,7 +33,7 @@ function getCurrentWeather(userCity) {
     "https://api.openweathermap.org/data/2.5/weather?q=" +
     userCity +
     "&appid=" +
-    "4e91d8495e609600b11d07a29c00fcb4";
+    OWM_API_KEY;
 
   console.log(url);
 
