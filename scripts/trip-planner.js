@@ -5,6 +5,8 @@ locationName = localStorage.getItem("locationInfo");
 long = urlParams.get("lng");
 lat = urlParams.get("lat");
 
+localStorage.removeItem("locationInfo");
+
 if (long) {
   $("#longitude").val(long);
 }
