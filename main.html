@@ -36,11 +36,11 @@
 
 <body>
   <nav id="navbarPlaceholder"></nav>
-  <main class="bg-light ">
+  <main class="bg-light">
     <!-- Tip of the day -->
     <div class="container-fluid text-center border border-dark">
       <div class="row">
-        <div class="col">
+        <div class="col pt-2 pb-2" id="tipOfTheDay">
           <strong>Tip of the day:</strong> <em><span id=tip-of-the-day>Loading...</span></em>
         </div>
       </div>
@@ -55,11 +55,11 @@
       <div class="container text-center">
         <div class="row justify-content-center">
           <div class="col-md" style="max-width: 100%">
-            <div class="card mb-3">
+            <div class="card pt-3 mb-3">
               <div class="container">
                 <div class="card-body row">
                   <div class="col">
-                    <h3 class="card-title"><span id="temperature"></span>°C</h3>
+                    <h3 class="card-title mb-4"><span id="temperature"></span>°C</h3>
                     <p class="card-text" style="font-style: italic">
                       In <span id="last-location"></span>, it feels like
                       <span id="feels-like"></span>°C.
@@ -87,7 +87,7 @@
               <div class="card-header">
                 <!--<img src="../1800_202310_DTC12/images/notifications_FILL1_wght400_GRAD0_opsz48.svg" alt="notification bell"> -->
                 <h1>
-                  <span class="material-symbols-outlined"> notifications </span>Alerts
+                  <span class="material-symbols-outlined me-1"> notifications </span>Alerts
                 </h1>
               </div>
               <div class="card-body">
