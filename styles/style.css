@@ -42,6 +42,10 @@ main {
     overflow: auto;
 }
 
+#tipOfTheDay {
+    background-color: hsl(53, 100%, 88%);
+}
+
 /* Map */
 
 #map-embed {
