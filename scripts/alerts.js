@@ -23,14 +23,14 @@ function getTransitAlerts(city) {
       res.forEach((alert) => {
         // console.log(alert.data());
         $("#transit-alert-placeholder").append(`
-        <div class="container text-center mt-2 w-100">
+        <div class="container text-center mt-2 mb-4 w-100">
           <div class="row justify-content-center">
             <div class="col-auto w-100">
               <div class="card text-bg-primary mb-3" style="max-width: 100%">
                 <div class="card-header">
                   <!--<img src="../1800_202310_DTC12/images/notifications_FILL1_wght400_GRAD0_opsz48.svg" alt="notification bell"> -->
                   <h3>
-                    <span class="material-symbols-outlined"> bus_alert </span>
+                    <span class="material-symbols-outlined me-1"> bus_alert </span>
                     Transit
                   </h3>
                 </div>
