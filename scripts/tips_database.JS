@@ -16,7 +16,8 @@ const getRainTips = () => {
 
   return rainTipsRef.get().then((doc) => {
     if (doc.exists) {
-      return doc.data();
+      const tips = doc.data();
+      return tips;
     } else {
       console.log('No such document!');
       return null;
@@ -26,6 +27,38 @@ const getRainTips = () => {
     return null;
   });
 };
+
+const renderRainTips = (data) => {
+  const container = document.getElementById('RainTipsContainer');
+  if (data && data.length > 0) {
+    data.forEach(tip => {
+      const tipElement = document.createElement('div');
+      tipElement.classList.add('tip-card');
+      
+      const titleElement = document.createElement('h2');
+      titleElement.textContent = tip.title;
+      tipElement.appendChild(titleElement);
+      
+      const textElement = document.createElement('p');
+      textElement.textContent = tip.text;
+      tipElement.appendChild(textElement);
+      
+      container.appendChild(tipElement);
+    });
+  } else {
+    const noTipsElement = document.createElement('p');
+    noTipsElement.textContent = 'No rain tips available.';
+    container.appendChild(noTipsElement);
+  }
+};
+
+
+
+getRainTips().then((data) => {
+  console.log(data)
+  renderRainTips(data);
+});
+
 
 const getSnowTips = () => {
   const snowTipsRef = db.collection('Tips and Tricks').doc('Snow tips');
@@ -42,6 +75,12 @@ const getSnowTips = () => {
     return null;
   });
 };
+getSnowTips().then((snowTips) => {
+  console.log(snowTips);
+}).catch((error) => {
+  console.log(error);
+});
+
 
 const getHeatTips = () => {
   const heatTipsRef = db.collection('Tips and Tricks').doc('Heat tips');
@@ -58,6 +97,11 @@ const getHeatTips = () => {
     return null;
   });
 };
+getHeatTips().then((heatTips) => {
+  console.log(heatTips);
+}).catch((error) => {
+  console.log(error);
+});
 
 const getWindTips = () => {
   const windTipsRef = db.collection('Tips and Tricks').doc('Wind tips');
@@ -74,5 +118,9 @@ const getWindTips = () => {
     return null;
   });
 };
+getWindTips().then((windTips) => {
+  console.log(windTips);
+}).catch((error) => {
+  console.log(error);
+});
 
-export { getRainTips, getSnowTips, getHeatTips, getWindTips };
