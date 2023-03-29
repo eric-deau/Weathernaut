@@ -1,3 +1,8 @@
+#logoimg {
+    width: 75%;
+    max-width: 400px;
+}
+
 .btn-primary {
     color: #e3f6f5;
     /* contrast to secondary colour */
