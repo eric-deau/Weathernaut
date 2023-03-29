@@ -36,11 +36,34 @@
 
 <body>
   <nav id="navbarPlaceholder"></nav>
-  <main></main>
+  <main>
+
+    <div class="container">
+      <h1>Hey <span id=name-goes-here></span>, Check out some of your favourite tips! </h1>
+      <!-- Here is container for cards  -->
+      <div class="container">
+        <div id="hikeCardGroup" class="row row-cols-auto">
+        </div>
+      </div>
+    </div>
+
+    <template id="savedCardTemplate">
+      <div class="card py-2 mx-2 bg-light" style="width: 10rem;">
+        <img class="card-image card-img-top" src=" ..." alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-length">placeholder</p>
+          <br>
+        </div>
+      </div>
+    </template>
+  </main>
   <footer id="footerPlaceholder"></footer>
 
   <!-- Extra scripts -->
   <script src="./scripts/constants.js"></script>
+  <script src="./scripts/firebaseConfig.js"></script>
+  <script src="./scripts/favorites.js"></script>
 </body>
 
 </html>
