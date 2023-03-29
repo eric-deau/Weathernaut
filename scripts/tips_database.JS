@@ -59,6 +59,13 @@ getRainTips().then((data) => {
   renderRainTips(data);
 });
 
+const hikeCardTemplate = document.querySelector('#hikeCardTemplate');
+const hikeCard = hikeCardTemplate.content.cloneNode(true);
+
+const divElement = document.querySelector('#RainTipsContainer');
+divElement.appendChild(hikeCard);
+
+
 
 // const getSnowTips = () => {
 //   const snowTipsRef = db.collection('Tips and Tricks').doc('Snow tips');
