@@ -8,7 +8,13 @@ function setActiveItem(item) {
         $(this).removeClass("active-nav-item");
     });
 
-    $(`#${pageName}`).addClass("active-nav-item");
+    if (pageName == "mapinfo") {
+        $(`#map`).addClass("active-nav-item");
+    } else if (pageName == "trip-planner-results") {
+        $(`#trip-planner`).addClass("active-nav-item");
+    } else {
+        $(`#${pageName}`).addClass("active-nav-item");
+    }
 }
 
 setActiveItem();
