@@ -30,6 +30,18 @@ const getRainTips = () => {
 
 const renderRainTips = (data) => {
   const container = document.getElementById('RainTipsContainer');
+
+  // Create HTML structure
+  const template = `
+    <div class="rain-tips">
+      <h1>Rain Tips</h1>
+      <div class="tips-container"></div>
+    </div>
+  `;
+  container.innerHTML = template;
+
+  // Populate tips container
+  const tipsContainer = document.querySelector('.tips-container');
   if (data && Object.keys(data).length > 0) {
     for (const tip in data) {
       const tipElement = document.createElement('div');
@@ -43,15 +55,30 @@ const renderRainTips = (data) => {
       textElement.textContent = data[tip];
       tipElement.appendChild(textElement);
 
-      container.appendChild(tipElement);
+      const buttonElement = document.createElement('button');
+      const bookmarkIcon = document.createElement('span');
+      bookmarkIcon.classList.add('material-icons');
+      bookmarkIcon.textContent = 'bookmark_border';
+      buttonElement.appendChild(bookmarkIcon);
+      buttonElement.classList.add('btn', 'btn-outline-secondary', 'btn-sm', 'me-2');
+      tipElement.appendChild(buttonElement);
+
+      tipsContainer.appendChild(tipElement);
     };
   } else {
     const noTipsElement = document.createElement('p');
     noTipsElement.textContent = 'No rain tips available.';
-    container.appendChild(noTipsElement);
+    tipsContainer.appendChild(noTipsElement);
   }
-};
 
+  // Add event listener to buttons
+  const buttons = document.querySelectorAll('.tip-card button');
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Code to handle button click
+    });
+  });
+};
 
 
 getRainTips().then((data) => {
@@ -59,8 +86,7 @@ getRainTips().then((data) => {
   renderRainTips(data);
 });
 
-const hikeCardTemplate = document.querySelector('#hikeCardTemplate');
-const hikeCard = hikeCardTemplate.content.cloneNode(true);
+
 
 const divElement = document.querySelector('#RainTipsContainer');
 divElement.appendChild(hikeCard);
