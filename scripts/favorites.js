@@ -55,7 +55,7 @@ function getBookmarks(user) {
                     newcard.querySelector('.card-title').innerHTML = title;
                     newcard.querySelector('.card-text').innerHTML = "This is a test";
                     //Finally, attach this new card to the gallery
-                    hikeCardGroup.appendChild(newcard);
+                    savedCardGroup.appendChild(newcard);
                 })
             });
         })
