@@ -3,6 +3,11 @@
     max-width: 400px;
 }
 
+.card-header .material-symbols-outlined {
+    font-size: 20px!important;
+    padding: 5px;
+}
+
 .btn-primary {
     color: #e3f6f5;
     /* contrast to secondary colour */
@@ -139,31 +144,32 @@ main {
 
 #trip-planner-main {
     text-align: center;
+    height: 100%
 }
 
 #trip-planner-information {
-    background-color: #eaeaea;
     padding: 20px;
+    height: 100%
 }
 
 #trip-planner-main #autocomplete-container input {
-    border-radius: 50px;
+    border-radius: 7px;
     border: #a4a4a4 1px solid;
     width: 100%;
 }
 
-#trip-planner-submit {
+/* #trip-planner-submit {
     border-radius: 50px;
     border: #929292 1px solid;
     background-color: #9b9b9b;
     color: #ffffff;
     font-size: 20px;
-}
+} */
 
-#trip-planner-submit:hover {
+/* #trip-planner-submit:hover {
     background-color: #797979;
     transition: ease-in-out 0.2s;
-}
+} */
 
 #transport-mode {
     border-radius: 10px;
@@ -254,3 +260,21 @@ input[type="radio"]:checked+label {
 .transpo-icon-label {
     font-size: 75%;
 }
+
+.rain-tips {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .tip-card {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
