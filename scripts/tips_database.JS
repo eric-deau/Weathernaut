@@ -40,7 +40,7 @@ const renderRainTips = (data) => {
     </div>
   `;
   container.innerHTML = template;
-  
+
 
   // Populate tips container
   const tipsContainer = document.querySelector('.tips-container');
@@ -95,23 +95,33 @@ const divElement = document.querySelector('#RainTipsContainer');
 // It adds the hike to the "bookmarks" array
 // Then it will change the bookmark icon from the hollow to the solid version. 
 //-----------------------------------------------------------------------------
-const currentUser = db.collection('users').doc(user.uid);
 
 function saveBookmark(title, docID) {
-  currentUser.update({
-    bookmarks: firebase.firestore.FieldValue.arrayUnion(docID)
-  })
-  .then(() => {
-    console.log(`Bookmark has been saved for: ${currentUser.id}`);
-    const iconID = 'save-' + title.replace(/ /g, '-').toLowerCase();
-    const icon = document.getElementById(iconID);
-    icon.innerText = 'bookmark';
-    icon.classList.remove('material-icons-outlined');
-    icon.classList.add('material-icons');
-  })
-  .catch((error) => {
-    console.log('Error saving bookmark:', error);
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      // User is signed in, call saveBookmark() function here
+      const currentUser = db.collection('users').doc(user.uid);
+      console.log(currentUser)
+
+      currentUser.update({
+        bookmarks: firebase.firestore.FieldValue.arrayUnion(docID)
+      })
+        .then(() => {
+          console.log(`Bookmark has been saved for: ${currentUser.id}`);
+          const iconID = 'save-' + title.replace(/ /g, '-').toLowerCase();
+          const icon = document.getElementById(iconID);
+          icon.innerText = 'bookmark';
+          icon.classList.remove('material-icons-outlined');
+          icon.classList.add('material-icons');
+        })
+        .catch((error) => {
+          console.log('Error saving bookmark:', error);
+        });
+    } else {
+      // User is signed out
+    }
   });
+
 }
 
 
