@@ -1,3 +1,4 @@
+// Get stored info from URL param and local storage if it exists
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 
@@ -5,6 +6,7 @@ long = urlParams.get("lng");
 lat = urlParams.get("lat");
 transportMode = urlParams.get("transport-mode");
 
+// Create map and map search
 const geoKey = "b8982cbd275848cea36a58777f3cfcfa";
 
 function createMap(latitude, longitude) {
@@ -27,14 +29,6 @@ function createMap(latitude, longitude) {
       '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
   }).addTo(map);
 
-  // Event Clicker for Map
-  function onMapClick(e) {
-    //console.log(e.latlng);
-    coordinates = e.latlng;
-    lat = e.latlng.lat;
-    lng = e.latlng.lng;
-    getLocation(lat, lng);
-  }
   // Reverse Geocoding
   function getLocation(lattitude, longitude) {
     console.log(lattitude, longitude);
@@ -69,6 +63,7 @@ function createMap(latitude, longitude) {
     }
   }
 }
+
 function updateWeather() {
   var lat = urlParams.get("lat");
   var lng = urlParams.get("lng");
@@ -81,6 +76,7 @@ function updateWeather() {
   });
 }
 
+// Get current weather
 function getCurrentWeather(latitude, longitude) {
   console.log("weather lat", latitude);
   console.log("weather long", longitude);
@@ -98,7 +94,7 @@ function getCurrentWeather(latitude, longitude) {
     "&lon=" +
     longitude +
     "&appid=" +
-    "4e91d8495e609600b11d07a29c00fcb4";
+    OWM_API_KEY;
 
   console.log(url);
 
@@ -154,5 +150,7 @@ function getTransitAlerts(city) {
     });
 }
 
-updateWeather();
-createMap(lat, long);
+$(document).ready(function () {
+  updateWeather();
+  createMap(lat, long);
+});

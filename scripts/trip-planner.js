@@ -1,22 +1,27 @@
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
+// Get stored info from URL param and local storage if it exists
+function getStoredInfo() {
 
-locationName = localStorage.getItem("locationInfo");
-long = urlParams.get("lng");
-lat = urlParams.get("lat");
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
 
-localStorage.removeItem("locationInfo");
+  locationName = localStorage.getItem("locationInfo");
+  long = urlParams.get("lng");
+  lat = urlParams.get("lat");
 
-if (long) {
-  $("#longitude").val(long);
+  if (long) {
+    $("#longitude").val(long);
+  }
+
+  if (lat) {
+    $("#latitude").val(lat);
+  }
+
+  if (locationName) {
+    $(".input-container input").val(locationName);
+  }
 }
 
-if (lat) {
-  $("#latitude").val(lat);
-}
-
-// Geocoding API
-
+// Create map and map search
 function addressAutocomplete(containerElement, callback, options) {
   const MIN_ADDRESS_LENGTH = 3;
   const DEBOUNCE_DELAY = 300;
@@ -254,36 +259,29 @@ function addressAutocomplete(containerElement, callback, options) {
   });
 }
 
-addressAutocomplete(
-  document.getElementById("autocomplete-container"),
-  (data) => {
-    console.log("S elected option: ");
-    console.log(data);
-    var lat = data.lat;
-    var lng = data.lon;
 
-    $("#latitude").val(lat);
-    $("#longitude").val(lng);
 
-    // var newURL = "trip-planner.html?lat=" + lat + "&long=" + lng;
-    // window.history.pushState({ path: newURL }, "", newURL);
-  },
-  {
-    placeholder: "Enter an address here",
-  }
-);
-
-function handleTripPlanner() {
-  console.log("Hi");
-  $("#trip-planner-information").submit(function (event) {
-    // alert("Disclaimer: This is not a real trip planner. It is just a demo.");
-  });
-}
 
 $(document).ready(function () {
-  handleTripPlanner();
-});
+  // Get stored info from URL param and local storage if it exists
+  getStoredInfo();
 
-if (locationName) {
-  $(".input-container input").val(locationName);
-}
+  // If location exists in localstorage, remove after accessing so it doesn't get pulled back in later
+  localStorage.removeItem("locationInfo");
+
+  addressAutocomplete(
+    document.getElementById("autocomplete-container"),
+    (data) => {
+      console.log("S elected option: ");
+      console.log(data);
+      var lat = data.lat;
+      var lng = data.lon;
+
+      $("#latitude").val(lat);
+      $("#longitude").val(lng);
+    },
+    {
+      placeholder: "Enter an address here",
+    }
+  );
+});
