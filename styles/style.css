@@ -264,7 +264,7 @@ input[type="radio"]:checked+label {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #f2f2f2;
+    background-color: #544c4c;
     border: 1px solid #ccc;
     border-radius: 5px;
   }
@@ -272,7 +272,7 @@ input[type="radio"]:checked+label {
   .tip-card {
     margin-bottom: 20px;
     padding: 10px;
-    background-color: #fff;
+    background-color: #80d5ff;
     border: 1px solid #ccc;
     border-radius: 5px;
   }
