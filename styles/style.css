@@ -153,23 +153,23 @@ main {
 }
 
 #trip-planner-main #autocomplete-container input {
-    border-radius: 50px;
+    border-radius: 7px;
     border: #a4a4a4 1px solid;
     width: 100%;
 }
 
-#trip-planner-submit {
+/* #trip-planner-submit {
     border-radius: 50px;
     border: #929292 1px solid;
     background-color: #9b9b9b;
     color: #ffffff;
     font-size: 20px;
-}
+} */
 
-#trip-planner-submit:hover {
+/* #trip-planner-submit:hover {
     background-color: #797979;
     transition: ease-in-out 0.2s;
-}
+} */
 
 #transport-mode {
     border-radius: 10px;
