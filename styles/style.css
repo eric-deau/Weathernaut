@@ -144,11 +144,12 @@ main {
 
 #trip-planner-main {
     text-align: center;
+    height: 100%
 }
 
 #trip-planner-information {
-    background-color: #eaeaea;
     padding: 20px;
+    height: 100%
 }
 
 #trip-planner-main #autocomplete-container input {
