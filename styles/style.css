@@ -3,6 +3,11 @@
     max-width: 400px;
 }
 
+.material-symbols-outlined {
+    font-size: 20px!important;
+    padding: 5px;
+}
+
 .btn-primary {
     color: #e3f6f5;
     /* contrast to secondary colour */
