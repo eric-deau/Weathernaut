@@ -90,8 +90,6 @@ function createMap(latitude, longitude, zoom) {
         const promise = new Promise((resolve, reject) => {
           currentPromiseReject = reject;
 
-          // The API Key provided is restricted to JSFiddle website
-          // Get your own API Key on https://myprojects.geoapify.com
           var url = `https://api.geoapify.com/v1/geocode/autocomplete?text=${encodeURIComponent(currentValue)}&format=json&limit=5&apiKey=${API_KEY}`;
 
           fetch(url)
