@@ -33,3 +33,7 @@ main {
     width: 100%;
     border: 1px solid #272643;
 }
+
+.btn {
+  width: 100%;
+}
