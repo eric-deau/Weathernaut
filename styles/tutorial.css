@@ -1,0 +1,80 @@
+#tutorial-img {
+    width: 75%;
+    max-width: 400px;
+}
+
+.btn-primary {
+    color: #e3f6f5;
+    /* contrast to secondary colour */
+    font-size: 150%;
+    background-color: #2c698d;
+    /* some secondary colour */
+    border-color: #272643;
+    /* some accent colour */
+    width: 100%;
+    border: 1px solid #272643;
+}
+
+.btn-secondary {
+    color: #e3f6f5;
+    /* contrast to secondary colour */
+    font-size: 150%;
+    background-color: #272643;
+    /* some secondary colour */
+    border-color: #272643;
+    /* some accent colour */
+    width: 100%;
+    border: 1px solid #272643;
+}
+
+.nav {
+    background-color: #272643;
+}
+
+.nav-link {
+    color: black;
+}
+
+.nav li:hover {
+    background-color: #1b1b2f;
+    transition: ease-in 0.2s;
+}
+
+.active-nav-item {
+    background-color: #2c698d;
+}
+
+main {
+    margin-top: 80px;
+    margin-bottom: 56px;
+    height: calc(100vh - 137px);
+    overflow: auto;
+}
+
+.item-label {
+    color: #ffffff;
+    font-size: 70%;
+    line-height: 1em;
+}
+
+input[type="radio"]:checked+label {
+    color: #2c698d;
+    border: solid 2px #2c698d;
+}
+
+.transpo-icon {
+    width: 72px;
+    height: 72px;
+    border: solid 2px #ffffff;
+    border-radius: 5px;
+}
+
+.transpo-icon:hover {
+    background-color: #eaeaea;
+    border: solid 2px #eaeaea;
+    border-radius: 5px;
+}
+
+.transpo-icon-label {
+    font-size: 75%;
+}
