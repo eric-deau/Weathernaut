@@ -11,6 +11,7 @@ firebase.initializeApp(firebaseConfig);
 
 const db = firebase.firestore();
 
+
 const getRainTips = () => {
   const rainTipsRef = db.collection('Tips and Tricks').doc('Rain tips');
 
@@ -39,6 +40,7 @@ const renderRainTips = (data) => {
     </div>
   `;
   container.innerHTML = template;
+  
 
   // Populate tips container
   const tipsContainer = document.querySelector('.tips-container');
@@ -58,11 +60,16 @@ const renderRainTips = (data) => {
       const buttonElement = document.createElement('button');
       const bookmarkIcon = document.createElement('span');
       bookmarkIcon.classList.add('material-icons');
+      bookmarkIcon.id = 'save-' + tip.replace(/ /g, '-').toLowerCase();
       bookmarkIcon.textContent = 'bookmark_border';
       buttonElement.appendChild(bookmarkIcon);
       buttonElement.classList.add('btn', 'btn-outline-secondary', 'btn-sm', 'me-2');
+      buttonElement.addEventListener('click', () => {
+        saveBookmark(tip, tipElement.id);
+      });
       tipElement.appendChild(buttonElement);
 
+      tipElement.id = tip.replace(/ /g, '-').toLowerCase();
       tipsContainer.appendChild(tipElement);
     };
   } else {
@@ -70,14 +77,6 @@ const renderRainTips = (data) => {
     noTipsElement.textContent = 'No rain tips available.';
     tipsContainer.appendChild(noTipsElement);
   }
-
-  // Add event listener to buttons
-  const buttons = document.querySelectorAll('.tip-card button');
-  buttons.forEach(button => {
-    button.addEventListener('click', () => {
-      // Code to handle button click
-    });
-  });
 };
 
 
@@ -89,7 +88,31 @@ getRainTips().then((data) => {
 
 
 const divElement = document.querySelector('#RainTipsContainer');
-divElement.appendChild(hikeCard);
+
+//-----------------------------------------------------------------------------
+// Change this function to make it work for the above code, when the user clicks on the bookmark icon
+// This function is called whenever the user clicks on the "bookmark" button.
+// It adds the hike to the "bookmarks" array
+// Then it will change the bookmark icon from the hollow to the solid version. 
+//-----------------------------------------------------------------------------
+const currentUser = db.collection('users').doc(user.uid);
+
+function saveBookmark(title, docID) {
+  currentUser.update({
+    bookmarks: firebase.firestore.FieldValue.arrayUnion(docID)
+  })
+  .then(() => {
+    console.log(`Bookmark has been saved for: ${currentUser.id}`);
+    const iconID = 'save-' + title.replace(/ /g, '-').toLowerCase();
+    const icon = document.getElementById(iconID);
+    icon.innerText = 'bookmark';
+    icon.classList.remove('material-icons-outlined');
+    icon.classList.add('material-icons');
+  })
+  .catch((error) => {
+    console.log('Error saving bookmark:', error);
+  });
+}
 
 
 
