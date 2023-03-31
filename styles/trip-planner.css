@@ -1,0 +1,45 @@
+#trip-planner-main {
+    text-align: center;
+    height: 100%
+}
+
+#trip-planner-information {
+    padding: 20px;
+    height: 100%
+}
+
+#trip-planner-main #autocomplete-container input {
+    border-radius: 7px;
+    border: #a4a4a4 1px solid;
+    width: 100%;
+}
+
+#transport-mode {
+    border-radius: 10px;
+    border: #929292 1px solid;
+    background-color: #ffffff;
+}
+
+
+
+input[type="radio"]:checked+label {
+    color: #2c698d;
+    border: solid 2px #2c698d;
+}
+
+.transpo-icon {
+    width: 72px;
+    height: 72px;
+    border: solid 2px #ffffff;
+    border-radius: 5px;
+}
+
+.transpo-icon:hover {
+    background-color: #eaeaea;
+    border: solid 2px #eaeaea;
+    border-radius: 5px;
+}
+
+.transpo-icon-label {
+    font-size: 75%;
+}
