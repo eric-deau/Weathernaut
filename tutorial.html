@@ -44,53 +44,37 @@
         </p>
         <div class="container-fluid">
             <div class="card mb-3 text-center">
-                <div class="display-4 text-center mt-5"><img src="./images/maptutorial.png" class="card-img"
-                        id="tutorial-img" alt="map tutorial"></div>
+                <div class="display-4 text-center mt-5"><video src="./tutorials/weathernautmaptutorial.mkv"
+                        class="object-fit-scale" id="tutorial-img" controls></video></div>
                 <div class="card-body">
                     <h5 class="card-title">How to use the map</h5>
                     <p class="card-text">Weathernaut provides a map courtesy of OpenStreetMaps and powered by Leaflet
                         which
-                        will help you with looking for a location! Just click on Map in the top navigation bar, and you
+                        will help you with looking for a location! Just click on map icon in the top navigation bar, and
+                        you
                         may
-                        use the mouse to look around, zoom with the scrollwheel, or drop a marker on the map! If that's
+                        use the mouse to look around, zoom with the scrollwheel, or drop a marker on the map. If that's
                         too
-                        much for you, feel free to use the search bar located at the top of the map to help
+                        much work for you, feel free to use the search bar located at the top of the map to help
                         auto-complete to
                         a new location! </p>
-                    <a href="#" class="btn btn-primary">Go To Map</a>
+                    <a href="#" class="btn btn-primary" onclick="goToPage(this)" value="map">Go To Map</a>
                 </div>
             </div>
             <div class="card mb-3 text-center">
                 <div class="display-4 text-center mt-5"><img src="./images/tripplannertutorial.png" class="card-img"
                         id="tutorial-img" alt="map tutorial"></div>
                 <div class="card-body">
-                    <h5 class="card-title">How to use the map</h5>
-                    <p class="card-text">Weathernaut provides a map courtesy of OpenStreetMaps and powered by Leaflet
-                        which
-                        will help you with looking for a location! Just click on Map in the top navigation bar, and you
-                        may
-                        use the mouse to look around, zoom with the scrollwheel, or drop a marker on the map! If that's
-                        too
-                        much for you, feel free to use the search bar located at the top of the map to help
-                        auto-complete to
-                        a new location! </p>
-                    <a href="#" class="btn btn-primary">Go To Trip Planner</a>
+                    <h5 class="card-title">How to use the Trip Planner</h5>
+                    <p class="card-text">Looking for an efficient route under heavy weather, but don't know how to plan
+                        it out? Take a visit to our trip planner page at the top navigation bar! Enter an address as
+                        your destination, click on the type of transportation method you will be using, and check out
+                        the information we will give you!</p>
+                    <a href="#" class="btn btn-primary" onclick="goToPage(this)" value="trip-planner">Go To Trip
+                        Planner</a>
                 </div>
             </div>
         </div>
-        <!-- <span class="nav-link active text-start ms-1 me-2" aria-current="page" onclick="goToPage(this)" value="main"
-            role="button"><span class="text material-symbols-outlined"> arrow_back </span>
-            <div>Back</div>
-        </span> -->
-
-        <!-- <ul class="nav justify-content-left pt-4">
-            <li class="nav-item">
-                <span class="nav-link active text-start ms-1 me-2" aria-current="page" onclick="goToPage(this)"
-                    value="main" role="button"><span class="text material-symbols-outlined"> arrow_back </span>
-                    <div>Back</div>
-                </span>
-            </li>
-        </ul> -->
     </main>
     <footer id="footerPlaceholder"></footer>
 
