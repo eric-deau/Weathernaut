@@ -13,8 +13,8 @@ const db = firebase.firestore();
 
 
 const getRainTips = () => {
-  const rainTipsRef = db.collection('Tips and Tricks').doc('Rain tips');
 
+  const rainTipsRef = db.collection('Tips and Tricks').doc('Rain tips');
   return rainTipsRef.get().then((doc) => {
     if (doc.exists) {
       const tips = doc.data();
@@ -28,6 +28,31 @@ const getRainTips = () => {
     return null;
   });
 };
+function fillBookmarks(tip) {
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      const currentUser = db.collection('users').doc(user.uid);
+
+      currentUser.get().then(userDoc => {
+        //get the user name
+        var bookmarks = userDoc.data().bookmarks;
+        console.log(bookmarks)
+
+        const tipid = tip.replace(/ /g, '-').toLowerCase()
+        console.log(tipid)
+
+        if (bookmarks.includes(tipid)) {
+
+          console.log("check")
+          document.getElementById('save-' + tipid).innerText = 'bookmark';
+        }
+      })
+    } else {
+      // User is signed out
+    }
+  });
+}
+
 
 const renderRainTips = (data) => {
   const container = document.getElementById('RainTipsContainer');
@@ -71,6 +96,7 @@ const renderRainTips = (data) => {
 
       tipElement.id = tip.replace(/ /g, '-').toLowerCase();
       tipsContainer.appendChild(tipElement);
+      fillBookmarks(tip);
     };
   } else {
     const noTipsElement = document.createElement('p');
@@ -123,6 +149,7 @@ function saveBookmark(title, docID) {
   });
 
 }
+
 
 
 
@@ -189,4 +216,3 @@ function saveBookmark(title, docID) {
 // }).catch((error) => {
 //   console.log(error);
 // });
-
