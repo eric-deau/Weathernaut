@@ -1,17 +1,14 @@
-function getCity() {
+// Get weather for the user's current city
+function getCityWeather() {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-      console.log(user.uid); // let me to know who is the user that logged in to get the UID
-      currentUser = db.collection("users").doc(user.uid); // will to to the firestore and go to the document of the user
+      currentUser = db.collection("users").doc(user.uid);
       currentUser.get().then((userDoc) => {
-        //get the user name
         var userCity = userDoc.data().city;
-        console.log(userCity);
         $.ajax({
-          url: `https://api.geoapify.com/v1/geocode/search?city=${userCity}&format=json&apiKey=b8982cbd275848cea36a58777f3cfcfa`,
+          url: `https://api.geoapify.com/v1/geocode/search?city=${userCity}&format=json&apiKey=${API_KEY}`,
           type: "GET",
           success: function (res) {
-            console.log(res);
             getCurrentWeather(userCity);
           },
         });
@@ -35,8 +32,6 @@ function getCurrentWeather(userCity) {
     "&appid=" +
     OWM_API_KEY;
 
-  console.log(url);
-
   getWeatherData()
     .then((data) => {
       forecastTemp = Math.round(parseFloat(data.main.temp) - 273.15);
@@ -46,10 +41,6 @@ function getCurrentWeather(userCity) {
       weatherLastLocation = data.name;
       weatherFeelsLike = Math.round(parseFloat(data.main.feels_like) - 273.15);
       weatherIcon = data.weather[0].icon;
-
-      console.log(weatherIcon);
-      console.log(weatherLastLocation);
-      console.log("Got weather");
 
       $("#temperature").text(forecastTemp);
       $("#weather-type").text(forecastWeather);
@@ -61,7 +52,12 @@ function getCurrentWeather(userCity) {
       );
     })
     .catch(function () {
-      // alert("Error updating weather data. Please try refreshing this page.");
+      alert("Error updating weather data. Please try refreshing this page.");
     });
 }
-getCity();
+
+const setup = () => {
+  getCityWeather();
+}
+
+$(document).ready(setup())
