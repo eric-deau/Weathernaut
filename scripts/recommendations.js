@@ -25,7 +25,7 @@ navigator.geolocation.getCurrentPosition(async (position) => {
     console.error(error);
   }
 });
-
+// classifyiung the weather conditions
 function getWeatherConditionCode(weatherCondition) {
   switch (weatherCondition) {
     case "rain":

@@ -13,7 +13,7 @@ const db = firebase.firestore();
 
 
 const getRainTips = () => {
-
+//get rain tips from database
   const rainTipsRef = db.collection('Tips and Tricks').doc('Rain tips');
   return rainTipsRef.get().then((doc) => {
     if (doc.exists) {
@@ -28,6 +28,7 @@ const getRainTips = () => {
     return null;
   });
 };
+//check if the user has logged in and filled in bookamrks before 
 function fillBookmarks(tip) {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
@@ -53,7 +54,7 @@ function fillBookmarks(tip) {
   });
 }
 
-
+//make raintips show up on the page
 const renderRainTips = (data) => {
   const container = document.getElementById('RainTipsContainer');
 
@@ -67,7 +68,7 @@ const renderRainTips = (data) => {
   container.innerHTML = template;
 
 
-  // Populate tips container
+  // Populate tips container and make bookmark button functional
   const tipsContainer = document.querySelector('.tips-container');
   if (data && Object.keys(data).length > 0) {
     for (const tip in data) {
@@ -105,7 +106,7 @@ const renderRainTips = (data) => {
   }
 };
 
-
+//flow of events
 getRainTips().then((data) => {
   console.log(data);
   renderRainTips(data);
@@ -115,12 +116,6 @@ getRainTips().then((data) => {
 
 const divElement = document.querySelector('#RainTipsContainer');
 
-//-----------------------------------------------------------------------------
-// Change this function to make it work for the above code, when the user clicks on the bookmark icon
-// This function is called whenever the user clicks on the "bookmark" button.
-// It adds the hike to the "bookmarks" array
-// Then it will change the bookmark icon from the hollow to the solid version. 
-//-----------------------------------------------------------------------------
 
 function saveBookmark(title, docID) {
   firebase.auth().onAuthStateChanged((user) => {
@@ -151,68 +146,3 @@ function saveBookmark(title, docID) {
 }
 
 
-
-
-// const getSnowTips = () => {
-//   const snowTipsRef = db.collection('Tips and Tricks').doc('Snow tips');
-
-//   return snowTipsRef.get().then((doc) => {
-//     if (doc.exists) {
-//       return doc.data();
-//     } else {
-//       console.log('No such document!');
-//       return null;
-//     }
-//   }).catch((error) => {
-//     console.log('Error getting document:', error);
-//     return null;
-//   });
-// };
-// getSnowTips().then((snowTips) => {
-//   console.log(snowTips);
-// }).catch((error) => {
-//   console.log(error);
-// });
-
-
-// const getHeatTips = () => {
-//   const heatTipsRef = db.collection('Tips and Tricks').doc('Heat tips');
-
-//   return heatTipsRef.get().then((doc) => {
-//     if (doc.exists) {
-//       return doc.data();
-//     } else {
-//       console.log('No such document!');
-//       return null;
-//     }
-//   }).catch((error) => {
-//     console.log('Error getting document:', error);
-//     return null;
-//   });
-// };
-// getHeatTips().then((heatTips) => {
-//   console.log(heatTips);
-// }).catch((error) => {
-//   console.log(error);
-// });
-
-// const getWindTips = () => {
-//   const windTipsRef = db.collection('Tips and Tricks').doc('Wind tips');
-
-//   return windTipsRef.get().then((doc) => {
-//     if (doc.exists) {
-//       return doc.data();
-//     } else {
-//       console.log('No such document!');
-//       return null;
-//     }
-//   }).catch((error) => {
-//     console.log('Error getting document:', error);
-//     return null;
-//   });
-// };
-// getWindTips().then((windTips) => {
-//   console.log(windTips);
-// }).catch((error) => {
-//   console.log(error);
-// });
