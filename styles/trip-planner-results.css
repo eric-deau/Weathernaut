@@ -3,3 +3,17 @@
     justify-content: space-between;
     margin: 0 20px;
 }
+
+.tip-card {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #eaeaea;
+    border-radius: 5px;
+  }
+
+.tip-card .btn {
+    width: auto;
+}
