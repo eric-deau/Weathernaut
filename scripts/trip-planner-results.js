@@ -107,7 +107,7 @@ function getCurrentWeather(latitude, longitude) {
       weatherLastLocation = data.name;
       weatherFeelsLike = Math.round(parseFloat(data.main.feels_like) - 273.15);
 
-      console.log("Got weather");
+      // updateRecommendationPage(getWeatherConditionCode(forecastWeather.toLowerCase()));
 
       $("#temperature").text(forecastTemp);
       $("#weather-type").text(forecastWeather);
@@ -150,7 +150,161 @@ function getTransitAlerts(city) {
     });
 }
 
+function getWeatherConditionCode(weatherCondition) {
+  switch (weatherCondition) {
+    case "rain":
+      return 1;
+    case "wind":
+      return 2;
+    case "clouds":
+    case "clear":
+      return 3;
+    case "snow":
+      return 4;
+    default:
+      return 0;
+  }
+}
+
+const getRainTips = () => {
+  const rainTipsRef = db.collection('Tips and Tricks').doc('Rain tips');
+
+  return rainTipsRef.get().then((doc) => {
+    if (doc.exists) {
+      const tips = doc.data();
+      return tips;
+    } else {
+      console.log('No such document!');
+      return null;
+    }
+  }).catch((error) => {
+    console.log('Error getting document:', error);
+    return null;
+  });
+};
+
+function fillBookmarks(tip) {
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      const currentUser = db.collection('users').doc(user.uid);
+
+      currentUser.get().then(userDoc => {
+        //get the user name
+        var bookmarks = userDoc.data().bookmarks;
+        console.log(bookmarks)
+
+        const tipid = tip.replace(/ /g, '-').toLowerCase()
+        console.log(tipid)
+
+        if (bookmarks.includes(tipid)) {
+
+          console.log("check")
+          document.getElementById('save-' + tipid).innerText = 'bookmark';
+        }
+      })
+    } else {
+      // User is signed out
+    }
+  });
+}
+
+const renderRainTips = (data) => {
+  const container = document.getElementById('RainTipsContainer');
+
+  // Create HTML structure
+  const template = `
+    <div class="rain-tips">
+      <div class="tips-container"></div>
+    </div>
+  `;
+  container.innerHTML = template;
+
+
+  // Populate tips container
+  const tipsContainer = document.querySelector('.tips-container');
+  if (data && Object.keys(data).length > 0) {
+    for (const tip in data) {
+      const tipElement = document.createElement('div');
+      tipElement.classList.add('tip-card');
+
+      // const titleElement = document.createElement('h3');
+      // titleElement.textContent = tip;
+      // tipElement.appendChild(titleElement);
+
+      const textElement = document.createElement('p');
+      textElement.textContent = data[tip];
+      tipElement.appendChild(textElement);
+
+      const buttonElement = document.createElement('button');
+      const bookmarkIcon = document.createElement('span');
+      bookmarkIcon.classList.add('material-icons');
+      bookmarkIcon.id = 'save-' + tip.replace(/ /g, '-').toLowerCase();
+      bookmarkIcon.textContent = 'bookmark_border';
+      buttonElement.appendChild(bookmarkIcon);
+      buttonElement.classList.add('btn', 'btn-outline-secondary', 'btn-sm', 'me-2');
+      buttonElement.addEventListener('click', () => {
+        saveBookmark(tip, tipElement.id);
+      });
+      tipElement.appendChild(buttonElement);
+
+      tipElement.id = tip.replace(/ /g, '-').toLowerCase();
+      tipsContainer.appendChild(tipElement);
+
+      fillBookmarks(tip);
+    };
+  } else {
+    const noTipsElement = document.createElement('p');
+    noTipsElement.textContent = 'No tips available.';
+    tipsContainer.appendChild(noTipsElement);
+  }
+};
+
+
+function saveBookmark(title, docID) {
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      // User is signed in, call saveBookmark() function here
+      const currentUser = db.collection('users').doc(user.uid);
+
+      currentUser.get().then(userDoc => {
+
+        if (userDoc.data().bookmarks.includes(docID)) {
+          var iconID = 'save-' + title.replace(/ /g, '-').toLowerCase();
+          currentUser.update({
+            bookmarks: firebase.firestore.FieldValue.arrayRemove(docID),
+          });
+
+          document.getElementById(iconID).innerText = "bookmark_border";
+        }
+        else {
+
+          currentUser.update({
+            bookmarks: firebase.firestore.FieldValue.arrayUnion(docID)
+          })
+            .then(() => {
+              console.log(`Bookmark has been saved for: ${currentUser.id}`);
+              const iconID = 'save-' + title.replace(/ /g, '-').toLowerCase();
+              const icon = document.getElementById(iconID);
+              icon.innerText = 'bookmark';
+              icon.classList.remove('material-icons-outlined');
+              icon.classList.add('material-icons');
+            })
+            .catch((error) => {
+              console.log('Error saving bookmark:', error);
+            });
+        }
+      })
+    } else {
+      // User is signed out
+    }
+  });
+}
+
 $(document).ready(function () {
   updateWeather();
   createMap(lat, long);
+  getRainTips().then((data) => {
+    console.log(data);
+    renderRainTips(data);
+  });
 });
