@@ -40,6 +40,7 @@ function getBookmarks(user) {
             // Get the Array of bookmarks
             var tips = db.collection("Tips and Tricks").doc("Rain tips");
 
+            // Get the saved card group and append to div
             tips.get().then((doc) => {
                 if (doc.exists) {
                     // console.log("Document data:", doc.data());
