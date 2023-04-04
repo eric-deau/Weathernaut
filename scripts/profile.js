@@ -75,7 +75,7 @@ function logout() {
         .then(() => {
             // Sign-out successful.
             console.log("logging out user");
-            location.href = "./index.html";
+            location.href = "/index.html";
         })
         .catch((error) => {
             // An error happened.
