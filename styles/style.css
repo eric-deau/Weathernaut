@@ -6,7 +6,7 @@ main {
 }
 
 .card-header .material-symbols-outlined {
-    font-size: 20px!important;
+    font-size: 20px !important;
     padding: 5px;
 }
 
@@ -34,6 +34,14 @@ main {
     border: 1px solid #272643;
 }
 
+.btn-info {
+    color: #e3f6f5;
+    /* contrast to secondary colour */
+    font-size: 150%;
+    /* some accent colour */
+    width: 100%;
+}
+
 .btn {
-  width: 100%;
+    width: 100%;
 }
