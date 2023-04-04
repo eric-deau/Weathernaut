@@ -1,19 +1,5 @@
-const firebaseConfig = {
-  apiKey: "AIzaSyBYJmXlirIV9u79Qd2gWySn4pgF3p-8svg",
-  authDomain: "comp1800-60ab7.firebaseapp.com",
-  projectId: "comp1800-60ab7",
-  storageBucket: "comp1800-60ab7.appspot.com",
-  messagingSenderId: "194039630689",
-  appId: "1:194039630689:web:52d083fb580c5dcd941320"
-};
-
-firebase.initializeApp(firebaseConfig);
-
-const db = firebase.firestore();
-
-
 const getRainTips = () => {
-//get rain tips from database
+  //get rain tips from database
   const rainTipsRef = db.collection('Tips and Tricks').doc('Rain tips');
   return rainTipsRef.get().then((doc) => {
     if (doc.exists) {
@@ -42,7 +28,7 @@ function fillBookmarks(tip) {
         const tipid = tip.replace(/ /g, '-').toLowerCase()
         console.log(tipid)
 
-        if (bookmarks.includes(tipid)) {
+        if (bookmarks.includes(tip)) {
 
           console.log("check")
           document.getElementById('save-' + tipid).innerText = 'bookmark';
@@ -125,7 +111,7 @@ function saveBookmark(title, docID) {
       console.log(currentUser)
 
       currentUser.update({
-        bookmarks: firebase.firestore.FieldValue.arrayUnion(docID)
+        bookmarks: firebase.firestore.FieldValue.arrayUnion(title)
       })
         .then(() => {
           console.log(`Bookmark has been saved for: ${currentUser.id}`);
