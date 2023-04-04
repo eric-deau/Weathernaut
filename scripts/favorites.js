@@ -38,20 +38,34 @@ function getBookmarks(user) {
         .then(userDoc => {
 
             // Get the Array of bookmarks
+            var tips = db.collection("Tips and Tricks").doc("Rain tips");
+
+            tips.get().then((doc) => {
+                if (doc.exists) {
+                    // console.log("Document data:", doc.data());
+                    bookmarks.forEach(thisTip => {
+                        // console.log(thisTip);
+                        let newcard = newcardTemplate.content.cloneNode(true);
+                        newcard.querySelector('.card-title').innerHTML = thisTip;
+                        newcard.querySelector('.card-text').innerHTML = doc.data()[thisTip];
+                        console.log(doc.data()[thisTip])
+                        console.log(thisTip)
+                        newcard.querySelector('a').onclick = () => deleteBookmark(thisTip);
+                        savedCardGroup.appendChild(newcard);
+                    })
+                } else {
+                    // doc.data() will be undefined in this case
+                    console.log("No such document!");
+                }
+            }).catch((error) => {
+                console.log("Error getting document:", error);
+            });
+
             var bookmarks = userDoc.data().bookmarks;
             console.log(bookmarks);
 
             // Get pointer the new card template
             let newcardTemplate = document.getElementById("savedCardTemplate");
-
-            // Iterate through the ARRAY of bookmarked hikes (document ID's)
-            bookmarks.forEach(thisTip => {
-                console.log(thisTip);
-                let newcard = newcardTemplate.content.cloneNode(true);
-                newcard.querySelector('.card-title').innerHTML = thisTip;
-                newcard.querySelector('a').onclick = () => deleteBookmark(thisTip);
-                savedCardGroup.appendChild(newcard);
-            })
         })
 }
 
