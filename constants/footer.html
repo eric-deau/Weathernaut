@@ -1,51 +1,73 @@
-<link rel="stylesheet" href="./styles/navigation.css" />
-<script src="./scripts/script.js"></script>
+<link rel="stylesheet" href="/styles/navigation.css" />
+<script src="/scripts/script.js"></script>
 
 <ul class="nav justify-content-center fixed-bottom nav-fill">
   <li class="nav-item" id="main">
-    <span
-      class="nav-link active"
-      aria-current="page"
-      href="../main.html"
-      onclick="goToPage(this)"
-      value="main"
-      role="button"
-      ><span class="text-white material-symbols-outlined"> home </span
-      ><div class="item-label">Home</span></span
-    >
+    <a href="/main.html" style="text-decoration: none;">
+      <span class="nav-link active" aria-current="page" href="../main.html" value="main" role="button"><span
+          class="text-white material-symbols-outlined"> home </span>
+        <div class="item-label">Home</div>
+    </a>
   </li>
   <li class="nav-item" id="favourites">
-    <span
-      class="nav-link"
-      href="#"
-      onclick="goToPage(this)"
-      value="favourites"
-      role="button"
-      ><span class="text-white material-symbols-outlined"> favorite </span
-      ><div class="item-label">Favourites</div></span
-    >
+    <a href="/html/favourites.html" style="text-decoration: none;">
+      <span class="nav-link" href="#" value="favourites" role="button"><span
+          class="text-white material-symbols-outlined">
+          favorite </span>
+        <div class="item-label">Favourites</div>
+      </span>
+    </a>
   </li>
   <li class="nav-item" id="alerts">
-    <span
-      class="nav-link"
-      href="#"
-      onclick="goToPage(this)"
-      value="alerts"
-      role="button"
-      ><span class="text-white material-symbols-outlined">
-        notifications_active </span
-      ><div class="item-label">Alerts</div></span
-    >
+    <a href="/html/alerts.html" style="text-decoration: none;">
+      <span class="nav-link" href="#" value="alerts" role="button"><span class="text-white material-symbols-outlined">
+          notifications_active </span>
+        <div class="item-label">Alerts</div>
+      </span>
+    </a>
   </li>
   <li class="nav-item" id="profile">
-    <span
-      class="nav-link"
-      onclick="goToPage(this)"
-      value="profile"
-      role="button"
-      ><span class="text-white material-symbols-outlined"> person </span
-      ><div class="item-label">Profile</div></span>
+    <a href="/html/profile.html" style="text-decoration: none;">
+      <span class="nav-link" value="#" role="button"><span class="text-white material-symbols-outlined"> person </span>
+        <div class="item-label">Profile</div>
+    </a>
   </li>
 </ul>
 
-<script src="./scripts/setActive.js"></script>
+<script src="/scripts/setActive.js"></script>
+
+
+
+
+<!-- <link rel="stylesheet" href="/styles/navigation.css" />
+<script src="/scripts/script.js"></script>
+
+<ul class="nav justify-content-center fixed-bottom nav-fill">
+  <li class="nav-item" id="main">
+    <span class="nav-link active" aria-current="page" href="../main.html" onclick="goToPage(this)" value="main"
+      role="button"><span class="text-white material-symbols-outlined"> home </span>
+      <div class="item-label">Home
+    </span></span>
+  </li>
+  <li class="nav-item" id="favourites">
+    <span class="nav-link" href="#" onclick="goToPage(this)" value="favourites" role="button"><span
+        class="text-white material-symbols-outlined"> favorite </span>
+      <div class="item-label">Favourites</div>
+    </span>
+  </li>
+  <li class="nav-item" id="alerts">
+    <span class="nav-link" href="#" onclick="goToPage(this)" value="alerts" role="button"><span
+        class="text-white material-symbols-outlined">
+        notifications_active </span>
+      <div class="item-label">Alerts</div>
+    </span>
+  </li>
+  <li class="nav-item" id="profile">
+    <span class="nav-link" onclick="goToPage(this)" value="profile" role="button"><span
+        class="text-white material-symbols-outlined"> person </span>
+      <div class="item-label">Profile</div>
+    </span>
+  </li>
+</ul>
+
+<script src="/scripts/setActive.js"></script> -->
