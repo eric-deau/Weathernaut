@@ -18,6 +18,11 @@ function getStoredInfo() {
 
   if (locationName) {
     $(".input-container input").val(locationName);
+
+    console.log(locationName)
+
+    // If location exists in localstorage, remove after accessing so it doesn't get pulled back in later
+    localStorage.removeItem("locationInfo");
   }
 }
 
@@ -263,11 +268,6 @@ function addressAutocomplete(containerElement, callback, options) {
 
 
 $(document).ready(function () {
-  // Get stored info from URL param and local storage if it exists
-  getStoredInfo();
-
-  // If location exists in localstorage, remove after accessing so it doesn't get pulled back in later
-  localStorage.removeItem("locationInfo");
 
   addressAutocomplete(
     document.getElementById("autocomplete-container"),
@@ -284,4 +284,7 @@ $(document).ready(function () {
       placeholder: "Enter an address here",
     }
   );
+
+  // Get stored info from URL param and local storage if it exists
+  getStoredInfo();
 });
