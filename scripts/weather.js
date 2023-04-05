@@ -69,7 +69,7 @@ function get8HourForecast(cityName) {
   }
 
   var url =
-    "http://api.openweathermap.org/data/2.5/forecast?q=" +
+    "https://api.openweathermap.org/data/2.5/forecast?q=" +
     cityName +
     "&appid=" +
     OWM_API_KEY +
