@@ -52,22 +52,18 @@ function updateRecommendationPage(weatherCondition) {
     case 1: // Rain
       recommendedPageTitle.textContent = "Recommended Based on Current Weather: Rain Recommendations";
       recommendedPageLink.href = "rainRecommendations.html";
-      removeCard("rain");
       break;
     case 2: // Wind
       recommendedPageTitle.textContent = "Recommended Based on Current Weather: Wind Recommendations";
       recommendedPageLink.href = "windRecommendations.html";
-      removeCard("wind");
       break;
     case 3: // Heat
       recommendedPageTitle.textContent = "Recommended Based on Current Weather: Heat Recommendations";
       recommendedPageLink.href = "heatRecommendations.html";
-      removeCard("heat");
       break;
     case 4: // Snow
       recommendedPageTitle.textContent = "Recommended Based on Current Weather: Snow Recommendations";
       recommendedPageLink.href = "snowRecommendations.html";
-      removeCard("snow");
       break;
     default:
       recommendedPageTitle.textContent = "Recommended Based on Current Weather: No Recommendations";
