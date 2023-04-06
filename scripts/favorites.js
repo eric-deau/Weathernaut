@@ -23,9 +23,7 @@ function insertNameFromFirestore() {
         if (user) { //if user logged in
             console.log(user.uid)
             db.collection("users").doc(user.uid).get().then(userDoc => {
-                console.log(userDoc.data().name)
                 userName = userDoc.data().name;
-                console.log(userName)
                 document.getElementById("name-goes-here").innerHTML = userName;
             })
         }
@@ -43,9 +41,7 @@ function getBookmarks(user) {
             // Get the saved card group and append to div
             tips.get().then((doc) => {
                 if (doc.exists) {
-                    // console.log("Document data:", doc.data());
                     bookmarks.forEach(thisTip => {
-                        // console.log(thisTip);
                         let newcard = newcardTemplate.content.cloneNode(true);
                         newcard.querySelector('.card-title').innerHTML = thisTip;
                         newcard.querySelector('.card-text').innerHTML = doc.data()[thisTip];
@@ -70,6 +66,7 @@ function getBookmarks(user) {
         })
 }
 
+// function to remove bookmark from user's firestore array
 function deleteBookmark(tip) {
     currentUser.set({
         bookmarks: firebase.firestore.FieldValue.arrayRemove(tip)

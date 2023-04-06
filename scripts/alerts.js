@@ -7,8 +7,6 @@ function getCityFromFirestore() {
       currentUser.get().then((userDoc) => {
         //get the user name
         var userCity = userDoc.data().city;
-        console.log(userCity);
-
         getTransitAlerts(userCity);
       });
     }
@@ -17,11 +15,9 @@ function getCityFromFirestore() {
 
 function getTransitAlerts(city) {
   db.collection("transitAlerts")
-    // .where("locations", "array-contains", city)
     .get()
     .then((res) => {
       res.forEach((alert) => {
-        // console.log(alert.data());
         $("#transit-alert-placeholder").append(`
         <div class="container text-center mt-2 mb-4 w-100">
           <div class="row justify-content-center">

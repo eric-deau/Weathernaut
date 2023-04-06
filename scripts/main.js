@@ -1,3 +1,4 @@
+// get time of day and display dynamic greeting
 function getTimeOfDay() {
   var today = new Date();
   var hourNow = today.getHours();
@@ -16,6 +17,7 @@ function getTimeOfDay() {
   $("#greeting").text(greeting); //jquery
 }
 
+// get name from Firestore to display in greeting
 function insertNameFromFirestore() {
   // to check if the user is logged in:
   firebase.auth().onAuthStateChanged((user) => {
@@ -26,7 +28,6 @@ function insertNameFromFirestore() {
         //get the user name
         var userName = userDoc.data().name;
         var userCity = userDoc.data().city;
-        console.log(userName);
         $("#name-goes-here").text(userName); //jquery
         $("#last-location").text(userCity);
 
@@ -36,10 +37,10 @@ function insertNameFromFirestore() {
   });
 }
 
+// get the tip of the day, or select one randomly if non-existing
 function getTipoftheDay() {
   date = new Date().toLocaleDateString();
   date = date.split("/").join("");
-  console.log(date);
 
   tipCollection = db.collection("tipOfTheDay");
 
@@ -54,7 +55,6 @@ function getTipoftheDay() {
         doc.forEach((res) => {
           tips.push(res.data());
           selectedTip = tips[0].tip;
-          console.log("today's tip: " + selectedTip);
 
           $("#tip-of-the-day").text(selectedTip);
         });
@@ -67,11 +67,8 @@ function getTipoftheDay() {
             tipIDs.push(res.id);
           });
 
-          console.log(tipIDs);
-
           randomIndex = Math.floor(Math.random() * tips.length);
           selectedTip = tips[randomIndex];
-          console.log("random tip: " + selectedTip);
 
           tipCollection.doc(tipIDs[randomIndex]).update({
             lastShown: date,
@@ -83,16 +80,15 @@ function getTipoftheDay() {
     });
 }
 
+// get transit alerts for the user's city
 function getTransitAlerts(city) {
   db.collection("transitAlerts")
     .where("locations", "array-contains", city)
     .get()
     .then((res) => {
       res.forEach((alert) => {
-        console.log(alert.data());
-        $("#alert-body").append(`                <h3>${
-          alert.data().alertTitle
-        }</h3>
+        $("#alert-body").append(`                <h3>${alert.data().alertTitle
+          }</h3>
         <p class="card-text">
           ${alert.data().alertDescription}
         </p>`);
@@ -100,6 +96,8 @@ function getTransitAlerts(city) {
     });
 }
 
-getTipoftheDay();
-getTimeOfDay();
-insertNameFromFirestore();
+$(document).ready(() => {
+  getTipoftheDay();
+  getTimeOfDay();
+  insertNameFromFirestore();
+});

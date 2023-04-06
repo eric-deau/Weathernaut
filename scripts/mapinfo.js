@@ -250,7 +250,7 @@ function createMap(latitude, longitude, zoom) {
             }
         });
     }
-
+    // Auto search location and place marker on the map, zoom in on location after
     addressAutocomplete(
         document.getElementById("autocomplete-container"),
         (data) => {
@@ -297,7 +297,7 @@ function createMap(latitude, longitude, zoom) {
             },
         });
     }
-
+    // Place a marker on the map coordinates
     function placeMarker(locationInfo, lat, lng) {
         if (markerOnMap == false) {
             marker = L.marker([lat, lng], { alt: "Info" })
@@ -312,7 +312,6 @@ function createMap(latitude, longitude, zoom) {
 
             $("#trip-planner-link").attr(
                 "href",
-                // `./trip-planner.html?locationName=${locationInfo}&lat=${lat}&lng=${lng}`
                 `./trip-planner.html?lat=${lat}&lng=${lng}`
             );
 
@@ -342,6 +341,7 @@ function createMap(latitude, longitude, zoom) {
     map.on("click", onMapClick);
 }
 
+// Get the coordinates from URL parameters and populate into map
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 
@@ -349,6 +349,7 @@ var lng = urlParams.get("long");
 var lat = urlParams.get("lat");
 var zoom = urlParams.get("zoom");
 
+// Grab weather info based off coordinates
 function updateWeather() {
     $.ajax({
         url: `https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${lng}&format=json&apiKey=${API_KEY} `,

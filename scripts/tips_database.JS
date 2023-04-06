@@ -23,14 +23,10 @@ function fillBookmarks(tip) {
       currentUser.get().then(userDoc => {
         //get the user name
         var bookmarks = userDoc.data().bookmarks;
-        console.log(bookmarks)
 
         const tipid = tip.replace(/ /g, '-').toLowerCase()
-        console.log(tipid)
 
         if (bookmarks.includes(tip)) {
-
-          console.log("check")
           document.getElementById('save-' + tipid).innerText = 'bookmark';
         }
       })

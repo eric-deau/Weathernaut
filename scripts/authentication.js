@@ -10,7 +10,7 @@ var uiConfig = {
           email: user.email,
           country: "Canada",
           state: "BC",
-          city: "Vancouver, CA",
+          city: "Vancouver",
           street: "Unknown"                         //with authenticated user's ID (user.uid)
         }).then(function () {
           console.log("New user added to firestore");

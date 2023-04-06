@@ -1,5 +1,6 @@
 var currentUser;
 
+// Populate user info if user is logged in
 function populateUserInfo() {
     firebase.auth().onAuthStateChanged(user => {
         // Check if user is signed in:
@@ -40,18 +41,19 @@ function populateUserInfo() {
     });
 }
 
+// Allow user to edit the information fields
 function editUserInfo() {
     //Enable the form fields
     document.getElementById('personalInfoFields').disabled = false;
 }
 
+// Allow user to save the edited fields into firestore
 function saveUserInfo() {
     var userName = document.getElementById('nameInput').value;
     var userCountry = document.getElementById('countryInput').value;
     var userState = document.getElementById('stateInput').value;
     var userCity = document.getElementById('cityInput').value;
     var userStreet = document.getElementById('streetInput').value;
-
 
     currentUser.set({
         name: userName,
@@ -68,6 +70,7 @@ function saveUserInfo() {
     document.getElementById('personalInfoFields').disabled = true;
 }
 
+// Allow user to log out and go back to index page
 function logout() {
     firebase
         .auth()
@@ -79,6 +82,7 @@ function logout() {
         })
         .catch((error) => {
             // An error happened.
+            console.log("Error logging out.")
         });
 }
 

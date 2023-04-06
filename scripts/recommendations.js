@@ -17,7 +17,6 @@ navigator.geolocation.getCurrentPosition(async (position) => {
 
     // Extract the weather condition from the API response
     const weatherCondition = data.weather[0].main.toLowerCase();
-    console.log(weatherCondition)
 
     // Update the recommended page link and title based on the weather condition
     updateRecommendationPage(getWeatherConditionCode(weatherCondition));
@@ -47,7 +46,6 @@ function updateRecommendationPage(weatherCondition) {
   // Get the recommended page link and title elements
   const recommendedPageLink = document.getElementById("recommendedPageLink");
   const recommendedPageTitle = document.getElementById("recommendedPageTitle");
-  console.log(weatherCondition)
 
   // Set the recommended page link and title based on the weather condition
   switch (weatherCondition) {

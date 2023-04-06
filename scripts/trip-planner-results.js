@@ -29,17 +29,13 @@ function createMap(latitude, longitude) {
       '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
   }).addTo(map);
 
-  // Reverse Geocoding
+  // get location based on a set of latitude and longitude
   function getLocation(lattitude, longitude) {
-    console.log(lattitude, longitude);
     $.ajax({
       url: `https://api.geoapify.com/v1/geocode/reverse?lat=${lattitude}&lon=${longitude}&format=json&apiKey=b8982cbd275848cea36a58777f3cfcfa`,
       type: "GET",
       success: function (res) {
-        console.log("response", res);
-        // console.log("get location", res.results[0].lat, res.results[0].lon);
         var addressInfo =
-          //   res.results[0].address_line1 + " " + res.results[0].address_line2;
           res.results[0].address_line1 + ", " + res.results[0].city;
 
         $("#destination").text(addressInfo);
@@ -53,6 +49,7 @@ function createMap(latitude, longitude) {
     });
   }
 
+  // place marker on map
   function placeMarker(lat, lng) {
     if (markerOnMap == false) {
       marker = L.marker([lat, lng], { alt: "Info" }).addTo(map);
@@ -64,6 +61,7 @@ function createMap(latitude, longitude) {
   }
 }
 
+// update weather based on current location
 function updateWeather() {
   var lat = urlParams.get("lat");
   var lng = urlParams.get("lng");
@@ -78,8 +76,6 @@ function updateWeather() {
 
 // Get current weather
 function getCurrentWeather(latitude, longitude) {
-  console.log("weather lat", latitude);
-  console.log("weather long", longitude);
   var twoHoursAgo = new Date();
   twoHoursAgo.setHours(twoHoursAgo.getHours() - 2);
 
@@ -95,8 +91,6 @@ function getCurrentWeather(latitude, longitude) {
     longitude +
     "&appid=" +
     OWM_API_KEY;
-
-  console.log(url);
 
   getWeatherData()
     .then((data) => {
@@ -117,13 +111,13 @@ function getCurrentWeather(latitude, longitude) {
     });
 }
 
+// get transit alerts for destination city
 function getTransitAlerts(city) {
   db.collection("transitAlerts")
     .where("locations", "array-contains", city)
     .get()
     .then((res) => {
       res.forEach((alert) => {
-        console.log(alert.data());
         $("#transit-alert-placeholder").append(`
         <div class="container text-center mt-2 w-100">
           <div class="row justify-content-center">
@@ -150,6 +144,7 @@ function getTransitAlerts(city) {
     });
 }
 
+// get weather condition code from Open Weather Maps
 function getWeatherConditionCode(weatherCondition) {
   switch (weatherCondition) {
     case "rain":
@@ -166,6 +161,7 @@ function getWeatherConditionCode(weatherCondition) {
   }
 }
 
+// update recommendations based on weather condition
 const getRainTips = () => {
   const rainTipsRef = db.collection('Tips and Tricks').doc('Rain tips');
 
@@ -183,6 +179,7 @@ const getRainTips = () => {
   });
 };
 
+// fill bookmarks if already saved
 function fillBookmarks(tip) {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
@@ -191,19 +188,15 @@ function fillBookmarks(tip) {
       currentUser.get().then(userDoc => {
         //get the user name
         var bookmarks = userDoc.data().bookmarks;
-        console.log(bookmarks)
 
         const tipid = tip.replace(/ /g, '-').toLowerCase()
-        console.log(tipid)
 
-        if (bookmarks.includes(tipid)) {
-
-          console.log("check")
+        if (bookmarks.includes(tip)) {
           document.getElementById('save-' + tipid).innerText = 'bookmark';
         }
       })
     } else {
-      // User is signed out
+      console.log("User is signed out")
     }
   });
 }
@@ -226,10 +219,6 @@ const renderRainTips = (data) => {
     for (const tip in data) {
       const tipElement = document.createElement('div');
       tipElement.classList.add('tip-card');
-
-      // const titleElement = document.createElement('h3');
-      // titleElement.textContent = tip;
-      // tipElement.appendChild(titleElement);
 
       const textElement = document.createElement('p');
       textElement.textContent = data[tip];
@@ -259,7 +248,7 @@ const renderRainTips = (data) => {
   }
 };
 
-
+// function to save bookmarks to user's bookmark array in Firestore
 function saveBookmark(title, docID) {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
@@ -279,7 +268,7 @@ function saveBookmark(title, docID) {
         else {
 
           currentUser.update({
-            bookmarks: firebase.firestore.FieldValue.arrayUnion(docID)
+            bookmarks: firebase.firestore.FieldValue.arrayUnion(title)
           })
             .then(() => {
               console.log(`Bookmark has been saved for: ${currentUser.id}`);
@@ -300,11 +289,11 @@ function saveBookmark(title, docID) {
   });
 }
 
+// run functions on page load
 $(document).ready(function () {
   updateWeather();
   createMap(lat, long);
   getRainTips().then((data) => {
-    console.log(data);
     renderRainTips(data);
   });
 });

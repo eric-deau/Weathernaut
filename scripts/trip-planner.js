@@ -19,8 +19,6 @@ function getStoredInfo() {
   if (locationName) {
     $(".input-container input").val(locationName);
 
-    console.log(locationName)
-
     // If location exists in localstorage, remove after accessing so it doesn't get pulled back in later
     localStorage.removeItem("locationInfo");
   }
@@ -106,9 +104,6 @@ function addressAutocomplete(containerElement, callback, options) {
       /* Create a new promise and send geocoding request */
       const promise = new Promise((resolve, reject) => {
         currentPromiseReject = reject;
-
-        // The API Key provided is restricted to JSFiddle website
-        // Get your own API Key on https://myprojects.geoapify.com
 
         var url = `https://api.geoapify.com/v1/geocode/autocomplete?text=${encodeURIComponent(
           currentValue
@@ -269,11 +264,10 @@ function addressAutocomplete(containerElement, callback, options) {
 
 $(document).ready(function () {
 
+  // create location search
   addressAutocomplete(
     document.getElementById("autocomplete-container"),
     (data) => {
-      console.log("S elected option: ");
-      console.log(data);
       var lat = data.lat;
       var lng = data.lon;
 
@@ -285,6 +279,6 @@ $(document).ready(function () {
     }
   );
 
-  // Get stored info from URL param and local storage if it exists
+  // get stored info from URL param and local storage if it exists
   getStoredInfo();
 });

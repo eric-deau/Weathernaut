@@ -23,7 +23,7 @@ function getCurrentWeather(userCity) {
   var url =
     "https://api.openweathermap.org/data/2.5/weather?q=" +
     userCity +
-    "&appid=" +
+    ", CA&appid=" +
     OWM_API_KEY;
 
   // get weather data from openweathermap

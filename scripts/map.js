@@ -1,5 +1,5 @@
 
-
+// Creates the map and appends it to the page
 function createMap(latitude, longitude, zoom) {
   latitude ? (latitude = latitude) : (latitude = 49.203);
   longitude ? (longitude = longitude) : (longitude = -122.934);
@@ -221,7 +221,7 @@ function createMap(latitude, longitude, zoom) {
       }
     });
   }
-
+  // Search for address and pin a marker to the page, and zoom in on the location
   addressAutocomplete(document.getElementById("autocomplete-container"), (data) => {
     console.log("Selected option: ");
     var addressInfo = data.address_line1 + " " + data.address_line2;
@@ -232,13 +232,11 @@ function createMap(latitude, longitude, zoom) {
       markerOnMap = false;
       map.setZoom(18);
       map.panTo([lat, lng]);
-      console.log("auto", lat, lng)
       placeMarker(addressInfo, data.lat, data.lon);
     }
     else {
       map.setZoom(18);
       map.panTo([lat, lng]);
-      console.log("auto", lat, lng)
       placeMarker(addressInfo, data.lat, data.lon);
     };
 
@@ -263,7 +261,6 @@ function createMap(latitude, longitude, zoom) {
       url: `https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${lng}&format=json&apiKey=${API_KEY}`,
       type: "GET",
       success: function (res) {
-        console.log(res);
         var addressInfo = res.results[0].address_line1 + " " + res.results[0].address_line2;
         lat = res.results[0].lat;
         lng = res.results[0].lon;
@@ -271,6 +268,7 @@ function createMap(latitude, longitude, zoom) {
       }
     });
   }
+  // place marker on coordinates
   function placeMarker(locationInfo, lat, lng) {
     if (markerOnMap == false) {
       marker = L.marker([lat, lng], { alt: "Info" })
@@ -299,7 +297,7 @@ function createMap(latitude, longitude, zoom) {
   map.on("click", onMapClick);
 }
 
-
+// get coordinates from URL parameters
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 

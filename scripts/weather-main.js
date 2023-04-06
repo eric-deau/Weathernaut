@@ -17,10 +17,12 @@ function getCityWeather() {
   });
 }
 
+// Pull weather info from OpenWeatherMap API
 function getCurrentWeather(userCity) {
   var twoHoursAgo = new Date();
   twoHoursAgo.setHours(twoHoursAgo.getHours() - 2);
 
+  // Populate HTML divs with weather info
   async function getWeatherData() {
     const response = await fetch(url);
     return await response.json();
@@ -29,7 +31,7 @@ function getCurrentWeather(userCity) {
   var url =
     "https://api.openweathermap.org/data/2.5/weather?q=" +
     userCity +
-    "&appid=" +
+    ", CA&appid=" +
     OWM_API_KEY;
 
   getWeatherData()
