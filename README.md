@@ -80,8 +80,15 @@ It has the following subfolders and files:
     /navbar.html                    # Sticky navbar after user logs in
 ├── images                          # Folder for images
     /weather-backgrounds            # Sub-folder for dynamic weather background images
-    /tripplannertutorial.png        # Acknowledge source
-    /weathernaut-logo.png           # Logo for the project
+        /atmosphere.jpg             # Atmosphere background image from Pexels.com
+        /clear.jpg                  # Clear background image from Pexels.com
+        /drizzle.jpg                # Drizzle background image from Pexels.com
+        /rain.jpg                   # Rain background image from Pexels.com
+        /snow.jpg                   # Snow background image from Pexels.com
+        /thunderstorm.jpg           # Thunrderstorm background image from Pexels.com
+
+    /tripplannertutorial.png        # Picture for Tutorial. Personal screenshot.
+    /weathernaut-logo.png           # Logo for the project.
 ├── scripts                         # Folder for scripts
     /alerts.js                      # Functions to populate Alerts page
     /authentication.js              # Functions for handling user login and signup
