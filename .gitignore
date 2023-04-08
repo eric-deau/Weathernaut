@@ -4,8 +4,3 @@ node_modules/
 .vscode/
 firebaseConfig.js
 /scripts/config.js
-.firebaserc
-firebase.json
-firestore.indexes.json
-firestore.rules
-.firebase
